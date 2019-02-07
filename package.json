@@ -1,0 +1,16 @@
+{
+  "name": "fdb",
+  "version": "0.0.0",
+  "description": "File-based NoSQL JSON database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "db",
+    "file",
+    "json"
+  ],
+  "author": "kekland <kk.erzhan@gmail.com>",
+  "license": "MIT"
+}
