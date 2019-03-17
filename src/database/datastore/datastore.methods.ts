@@ -8,7 +8,7 @@ import generateId from 'nanoid'
 
 export class DatastoreOperations<T extends Model<T>> {
   private db: () => Datastore<T>;
-  private store: LevelUp<EncodingDown<string, any>>;
+  public store: LevelUp<EncodingDown<string, any>>;
   private type: () => any;
 
   constructor(db: () => Datastore<T>, store: LevelUp<EncodingDown<string, any>>, type: () => any) {

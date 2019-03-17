@@ -1,6 +1,7 @@
 import { IFilter } from "./filter.types";
 
-export class FilterOperator<T> {
+//! Legacy
+/*export class FilterOperator<T> {
   run(value: T): boolean {
     return true
   }
@@ -95,5 +96,17 @@ export class Filter<T, K extends T> implements FilterOperator<T> {
 
   constructor(filterObject: IFilter<K>) {
     this.filterObject = filterObject
+  }
+}*/
+
+export class FilterOperator<T> {
+  private method: (value: IFilter<T>) => boolean;
+  
+  run(value: T): boolean {
+    return this.method(value)
+  }
+
+  constructor(method: (value: IFilter<T>) => boolean) {
+    this.method = method
   }
 }

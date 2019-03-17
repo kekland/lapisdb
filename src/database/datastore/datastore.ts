@@ -8,6 +8,7 @@ import EncodingDown from 'encoding-down';
 import { DatastoreOperations } from './datastore.methods';
 import { GetOperation } from '../operations/get.operation';
 import { Model } from '../../model';
+import { PushOperation } from '../operations/push.operation';
 
 export interface DatastoreStreamIteratorData {
   key: string;
@@ -29,6 +30,10 @@ export class Datastore<T extends Model<T>> {
     this.store = levelup(encoding)
     this.type = type()
     this.methods = new DatastoreOperations(() => this, this.store, type)
+  }
+
+  public push(): PushOperation<T> {
+    return new PushOperation(this)
   }
 
   public get(): GetOperation<T> {

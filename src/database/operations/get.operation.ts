@@ -4,6 +4,8 @@ import { FilterOperator } from "../filter/filter";
 import { PaginationData, Datastore } from "../datastore/datastore";
 import { SortOperator } from "../sort/sort";
 import { Utils } from "../../utils";
+import { ISort } from "../sort/sort.types";
+import { IFilter } from "../filter/filter.types";
 
 export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   private _filter: FilterOperator<T> = null;
@@ -15,13 +17,13 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
     this.store = store
   }
 
-  public filter(data: FilterOperator<T>): GetOperation<T> {
-    this._filter = data
+  public filter(method: (value: IFilter<T>) => boolean): GetOperation<T> {
+    this._filter = new FilterOperator(method)
     return this
   }
 
-  public sort(data: SortOperator<T>): GetOperation<T> {
-    this._sort = data
+  public sort(data: ISort<T>): GetOperation<T> {
+    this._sort = new SortOperator(data)
     return this
   }
 

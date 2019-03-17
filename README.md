@@ -214,7 +214,7 @@ That's the structure of **filters**. Even though it might be a **lot of text**, 
 
 #### Sorting
 
-You can **sort** the arrays too. To do that, simply call the **.sort()** method on **GetOperation** object, and pass a **SortOperator** object as an argument.
+You can **sort** the results too. To do that, simply call the **.sort()** method on **GetOperation** object, and pass a **SortOperator** object as an argument.
 
 For example:
 
