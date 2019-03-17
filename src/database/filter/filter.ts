@@ -1,4 +1,4 @@
-import { IFilter } from "./types";
+import { IFilter } from "./filter.types";
 
 export class FilterOperator<T> {
   run(value: T): boolean {
@@ -68,9 +68,12 @@ export class Filter<T, K extends T> implements FilterOperator<T> {
   filterObject: IFilter<K>; 
 
   run(value: T): boolean {
-    for(const key in value) {
-      if(!this.filterObject[key])  continue;
+    for(const key in this.filterObject) {
       const valueToCheck = value[key]
+      if(typeof this.filterObject[key] == typeof valueToCheck) {
+        return this.filterObject[key] === valueToCheck
+      }
+      
       const operator = this.filterObject[key].operator
       const valueFilter = this.filterObject[key].value
       

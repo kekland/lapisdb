@@ -1,5 +1,5 @@
-import { Datastore } from './datastore';
 import { Exclude } from 'class-transformer';
+import { Datastore } from './database/datastore/datastore';
 
 export class Model<T extends Model<T>> {
   @Exclude({toPlainOnly: true})

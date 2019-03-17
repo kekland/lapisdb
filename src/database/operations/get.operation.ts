@@ -1,0 +1,70 @@
+import { Model } from "../../model";
+import { BaseOperation } from "./database.operations";
+import { FilterOperator } from "../filter/filter";
+import { PaginationData, Datastore } from "../datastore/datastore";
+import { SortOperator } from "../sort/sort";
+import { Utils } from "../../utils";
+
+export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
+  private _filter: FilterOperator<T> = null;
+  private _pagination: PaginationData = {skip: 0, take: Infinity};
+  private _sort: SortOperator<T> = null;
+  private store: Datastore<T>
+
+  constructor(store: Datastore<T>) {
+    this.store = store
+  }
+
+  public filter(data: FilterOperator<T>): GetOperation<T> {
+    this._filter = data
+    return this
+  }
+
+  public sort(data: SortOperator<T>): GetOperation<T> {
+    this._sort = data
+    return this
+  }
+
+  public paginate(data: PaginationData): GetOperation<T> {
+    this._pagination = data
+    return this
+  }
+
+  public skip(skip: number): GetOperation<T> {
+    this._pagination.skip = skip
+    return this
+  }
+
+  public take(take: number): GetOperation<T> {
+    this._pagination.take = take
+    return this
+  }
+
+  public async run() {
+    return this.result()
+  }
+  
+  public async result(): Promise<T[]> {
+    let result = await this.store.methods.get(this._filter)
+    if(this._sort) {
+      result = this._sort.run(result)
+    }
+    if(this._pagination) {
+      result = Utils.paginate(result, this._pagination)
+    }
+    return result
+  }
+
+  public async first(): Promise<T> {
+    return (await this.result())[0]
+  }
+
+  public async last(): Promise<T> {
+    const result = await this.result()
+    return (await this.result())[result.length - 1]
+  }
+
+  public async count(): Promise<number> {
+    return await this.store.methods.count(this._filter, this._pagination)
+  }
+}

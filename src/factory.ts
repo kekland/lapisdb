@@ -1,5 +1,5 @@
 import { Model } from './model';
-import { Datastore } from './datastore';
+import { Datastore } from './database/datastore/datastore';
 
 export class Factory<T extends Model<T>> {
   private type: any;
