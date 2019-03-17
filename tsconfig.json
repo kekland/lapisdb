@@ -10,6 +10,7 @@
     "target": "es6",
     "sourceMap": true,
     "allowJs": true,
+    "esModuleInterop": true,
     "outDir": "./build"
   },
   "include": [
