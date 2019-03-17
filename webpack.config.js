@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'source-map',
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         devtoolModuleFilenameTemplate: '[absolute-resource-path]'
     },

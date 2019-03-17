@@ -27,6 +27,7 @@
     "interface-name": [
       false
     ],
+    "no-console": false,
     "arrow-parens": false,
     "object-literal-sort-keys": false,
     "semicolon": false,

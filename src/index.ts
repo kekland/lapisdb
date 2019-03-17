@@ -1,8 +1,3 @@
-console.log('hello there')
-let a = 0
+import { Datastore } from './datastore';
 
-console.log(a)
-
-a = 3
-
-console.log(a)
+const store = new Datastore('hello', './database')
