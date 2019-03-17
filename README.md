@@ -107,7 +107,7 @@ const data: Human[] = await store.get()
 
 #### Filtering
 
-**fDB's** filtering is very easy to write, unlike other databases or ORMs. Also, all of is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
+**fDB's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
 
 To filter, you simply call a .filter() method, where you can pass various objects to do some complex filtering.
 
@@ -189,7 +189,7 @@ const data: Human[] = await store.get()
   .result()
 
 // Get humans that are either below 6 or older than 25 that are named John.
-(((age < 6) || (age > 25)) && (name == 'John'))
+// (((age < 6) || (age > 25)) && (name == 'John'))
 const data: Human[] = await store.get()
   .filter(
     new And(
