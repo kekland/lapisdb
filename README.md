@@ -10,7 +10,7 @@ I am still working on this project, and many things **might change in future**.
 
 Right now, I **do not recommend** you to try and download the code - because it is still incomplete. When the project will be ready for usage, I will upload it to **NPM**.
 
-## ❓ Why in the world I need another database?
+## ❓ Why in the world do I need another database?
 
 During my experience writing **backend services**, I often cannot find a database that is both **fast** and **easy** to use.
 
