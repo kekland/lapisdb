@@ -1,4 +1,5 @@
 var path = require('path');
+var TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -21,4 +22,15 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new TypedocWebpackPlugin({
+            name: 'Sirano',
+            mode: 'file',
+            includeDeclarations: false,
+            module: 'commonjs',
+            target: 'es6',
+            esModuleInterop: true,
+            out: './docs'
+        }, './src')
+    ]
 }

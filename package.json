@@ -24,18 +24,20 @@
     "leveldown": "^4.0.2",
     "levelup": "^4.0.0",
     "moment": "^2.24.0",
-    "nanoid": "^2.0.1"
+    "nanoid": "^2.0.1",
+    "class-transformer": "^0.2.0"
   },
   "devDependencies": {
     "@types/encoding-down": "^5.0.0",
     "@types/leveldown": "^4.0.0",
     "@types/levelup": "^3.1.0",
     "@types/nanoid": "^1.2.1",
-    "class-transformer": "^0.2.0",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
     "ts-loader": "^5.3.3",
+    "typedoc": "^0.14.2",
+    "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
