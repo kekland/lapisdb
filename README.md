@@ -1,4 +1,4 @@
-# 💥 fDB
+# 💥 Sirano
 
 A **TypeScript** embedded database built on top of [LevelDB](https://github.com/level/level) - a fast and efficient C++ database.
 
@@ -14,7 +14,7 @@ Right now, I **do not recommend** you to try and download the code - because it 
 
 During my experience writing **backend services**, I often cannot find a database that is both **fast** and **easy** to use.
 
-**fDB** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
+**Sirano** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
 
 Trust me, you will **fall in love** with its syntax.
 
@@ -22,7 +22,7 @@ Trust me, you will **fall in love** with its syntax.
 
 ### Creating models
 
-**fDB** uses a concept of Models, that I ~~stole~~ borrowed from various other databases (**MongoDB and mongoose**) and ORMs (**TypeORM**).
+**Sirano** uses a concept of Models, that I ~~stole~~ borrowed from various other databases (**MongoDB and mongoose**) and ORMs (**TypeORM**).
 
 Let's say we want to create a model called Human, that has a name and an age.
 
@@ -44,7 +44,7 @@ export class Human extends Model<Human> {
 
 ### Creating Datastore
 
-**fDB** uses low-level **LevelDB** database and provides higher-level abstraction for your objects. To start, you have to create a `Datastore` object.
+**Sirano** uses low-level **LevelDB** database and provides higher-level abstraction for your objects. To start, you have to create a `Datastore` object.
 
 Now, lets create a **Datastore** for our **Human** model. To do that, you create a new **Datastore** object, passing the **name of database** first, then the **location of it**, and then creating a function that returns the **type of the model**.
 
@@ -67,7 +67,7 @@ console.log(human.id) //nanoId identifier.
 
 ### Getting objects
 
-Now this is the interesting part. To get objects from **fDB** datastore, you should call **get()** method on the datastore.
+Now this is the interesting part. To get objects from **Sirano** datastore, you should call **get()** method on the datastore.
 
 ```ts
 const operation = store.get()
@@ -107,7 +107,7 @@ const data: Human[] = await store.get()
 
 #### Filtering
 
-**fDB's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
+**Sirano's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
 
 To filter, you simply call a .filter() method, where you can pass various objects to do some complex filtering.
 

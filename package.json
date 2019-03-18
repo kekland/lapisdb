@@ -1,7 +1,7 @@
 {
-  "name": "fdb",
+  "name": "sirano",
   "version": "0.0.0",
-  "description": "File-based NoSQL JSON database.",
+  "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
