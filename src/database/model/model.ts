@@ -1,4 +1,4 @@
-import { Exclude } from 'class-transformer';
+import { Exclude, classToPlain } from 'class-transformer';
 import { Datastore } from '../datastore/datastore';
 
 export interface IObjectMetadata {
@@ -25,17 +25,22 @@ export class Model<T extends Model<T>> {
   }
 
   public setData(data: { id: string, store: Datastore<T> }) {
-    this.meta = { id: data.id }
+    if (this.meta == null) {
+      this.meta = { id: data.id }
+    }
+    else {
+      this.meta.id = data.id
+    }
     this.store = data.store
   }
 
   public setCreatedTime(time: number) {
-    if(this.meta == null) { return; }
+    if (this.meta == null) { return; }
     this.meta.created = time
   }
 
   public setUpdatedTime(time: number) {
-    if(this.meta == null) { return; }
+    if (this.meta == null) { return; }
     this.meta.updated = time
   }
 
@@ -44,7 +49,7 @@ export class Model<T extends Model<T>> {
   }
 
   public async save() {
-    if(this.meta && this.meta.id) {
+    if (this.meta && this.meta.id) {
       await this.store.edit().item(this).with({}).run()
     }
     else {
@@ -54,5 +59,9 @@ export class Model<T extends Model<T>> {
 
   public delete() {
     this.store.delete().item(this).run()
+  }
+
+  public log(func: (any) => void) {
+    func(classToPlain(this))
   }
 }

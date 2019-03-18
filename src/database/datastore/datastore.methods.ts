@@ -77,7 +77,6 @@ export class DatastoreOperations<T extends Model<T>> {
   private async iterateThroughObjects(onPass: (data: DatastoreStreamIteratorData) => void, filter?: FilterOperator<T>): Promise<void> {
     await this.createReadStream<T>((data) => {
       const object = data.value
-      object.id = data.key
       if (filter != null) {
         if (!filter.run(object)) {
           return null
@@ -119,7 +118,8 @@ export class DatastoreOperations<T extends Model<T>> {
 
     this.setPushData(id, item)
 
-    await this.store.put(id, this.convertToPlain(item))
+    const plain = this.convertToPlain(item)
+    await this.store.put(id, plain)
     return item
   }
 

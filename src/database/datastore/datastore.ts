@@ -7,10 +7,10 @@ import { classToPlain, plainToClass } from 'class-transformer'
 import EncodingDown from 'encoding-down';
 import { DatastoreOperations } from './datastore.methods';
 import { GetOperation } from '../operations/get.operation';
-import { PushOperation } from '../operations/push.operation';
+import { PushOperation, BatchedPushOperation } from '../operations/push.operation';
 import { Model } from '../model/model';
 import { EditOperation } from '../operations/edit.operation';
-import { DeleteOperation } from '../operations/delete.operation';
+import { DeleteOperation, BatchedDeleteOperation } from '../operations/delete.operation';
 
 export interface DatastoreStreamIteratorData {
   key: string;
@@ -43,6 +43,10 @@ export class Datastore<T extends Model<T>> {
     return new PushOperation(this)
   }
 
+  public pushBatched(): BatchedPushOperation<T> {
+    return new BatchedPushOperation(this)
+  }
+
   public get(): GetOperation<T> {
     return new GetOperation(this) 
   }
@@ -53,5 +57,9 @@ export class Datastore<T extends Model<T>> {
 
   public delete(): DeleteOperation<T> {
     return new DeleteOperation(this)
+  }
+
+  public deleteBatched(): BatchedDeleteOperation<T> {
+    return new BatchedDeleteOperation(this)
   }
 }

@@ -17,9 +17,17 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
     this.store = store
   }
 
+  public where(method: (value: IFilter<T>) => boolean): GetOperation<T> {
+    return this.filter(method)
+  }
+
   public filter(method: (value: IFilter<T>) => boolean): GetOperation<T> {
     this._filter = new FilterOperator(method)
     return this
+  }
+
+  public orderBy(data: ISort<T>): GetOperation<T> {
+    return this.sort(data)
   }
 
   public sort(data: ISort<T>): GetOperation<T> {
