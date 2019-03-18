@@ -1,6 +1,6 @@
 {
   "name": "sirano",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
   "scripts": {
@@ -17,6 +17,15 @@
     "file",
     "json"
   ],
+  "homepage": "https://kekland.github.io/sirano",
+  "bugs": { 
+    "url" : "https://github.com/kekland/sirano/issues", 
+    "email" : "kk.erzhan@gmail.com"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/kekland/sirano.git"
+  },
   "author": "kekland <kk.erzhan@gmail.com>",
   "license": "MIT",
   "dependencies": {
