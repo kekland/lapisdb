@@ -29,6 +29,12 @@ During my experience writing **backend services**, I often cannot find a databas
 
 ## 🔨 How do I use it?
 
+### 📕 Documentation
+
+You can find the full **TypeDoc documentation** [here](https://kekland.github.io/sirano).
+
+### 📋 Table of contents
+
 1. [Creating models](#creating-models)
 2. [Creating Datastore](#creating-datastore)
 3. [Pushing objects](#pushing-objects)
@@ -278,6 +284,6 @@ Of course, if you need to delete large amounts of data, using batched version wi
 
 *Coming soon*: hooks, server, etc.
 
-## Contact me
+## 📧 Contact me
 
 **E-Mail**: `kk.erzhan@gmail.com`
