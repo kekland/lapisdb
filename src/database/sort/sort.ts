@@ -1,16 +1,36 @@
-import { ISort, ISortFunction, SortDirection, ISortField } from "./sort.types";
+import { ISort, IComparator, SortDirection, ISortField } from "./sort.types";
 
+/**
+ * A class that holds the sorting data and sorts an array of objects.
+ */
 export class SortOperator<T> {
+  /** Sorting instructions */
   sort: ISort<T>
 
+  /**
+   * Creates an instance of SortOperator.
+   * @param sort Sorting instructions.
+   */
   constructor(sort: ISort<T>) {
     this.sort = sort
   }
 
-  private isFieldFunction(field: any): field is ISortFunction<T> {
+
+  /**
+   * Is `field` a function?
+   * @param field The field to check.
+   * @returns If the field is function, returns `true`.
+   */
+  private isFieldFunction(field: any): field is IComparator<T> {
     return typeof field == 'function'
   }
 
+  /**
+   * Runs the sorting process. Uses JavaScript's `Array.sort()`.
+   *
+   * @param values What to sort
+   * @returns Sorted array
+   */
   run(values: T[]): T[] {
     return values.sort((a: T, b: T) => {
       let results: Map<number, number[]> = new Map()

@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Instructions on how to sort a field of an object.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -104,19 +111,30 @@
 					<div class="tsd-signature tsd-kind-icon">priority<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.types.ts#L17">database/sort/sort.types.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.types.ts#L34">database/sort/sort.types.ts:34</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Priority of this field. Defaults to 0.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="sort" class="tsd-anchor"></a>
 					<h3>sort</h3>
-					<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <a href="../globals.html#isortfunction" class="tsd-signature-type">ISortFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../enums/sortdirection.html" class="tsd-signature-type">SortDirection</a></div>
+					<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <a href="../globals.html#icomparator" class="tsd-signature-type">IComparator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../enums/sortdirection.html" class="tsd-signature-type">SortDirection</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.types.ts#L16">database/sort/sort.types.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.types.ts#L29">database/sort/sort.types.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><code>sort</code> can be either a function that compares two items (comparator),
+							or can be a SortDirection enum, which sets the direction of a sort.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -155,16 +173,10 @@
 						<a href="../classes/editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="../classes/factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/human.html" class="tsd-kind-icon">Human</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/model.html" class="tsd-kind-icon">Model</a>
@@ -209,6 +221,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -216,12 +231,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

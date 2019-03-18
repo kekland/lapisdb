@@ -66,11 +66,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This operation <strong>gets</strong> objects from the database.</p>
+					</div>
+					<h4 id="usage">Usage</h4>
+					<p>See <a href="datastore.html#get">Datastore.get</a>.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T<span class="tsd-signature-symbol">: </span><a href="model.html" class="tsd-signature-type">Model</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The model of the Datastore. <code>T</code> must extend from <code>Model</code>.</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -144,13 +158,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L14">database/operations/get.operation.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L29">database/operations/get.operation.ts:29</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>store: <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The datastore where the operation takes place.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a></h4>
@@ -166,9 +187,14 @@
 					<div class="tsd-signature tsd-kind-icon">_filter<span class="tsd-signature-symbol">:</span> <a href="filteroperator.html" class="tsd-signature-type">FilterOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L11">database/operations/get.operation.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L20">database/operations/get.operation.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Filter data to use. Defaults to null - do not filter.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_sort" class="tsd-anchor"></a>
@@ -176,9 +202,14 @@
 					<div class="tsd-signature tsd-kind-icon">_sort<span class="tsd-signature-symbol">:</span> <a href="sortoperator.html" class="tsd-signature-type">SortOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L13">database/operations/get.operation.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L26">database/operations/get.operation.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Sorting data to use. Defaults to null - do not sort.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="store" class="tsd-anchor"></a>
@@ -186,9 +217,14 @@
 					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L14">database/operations/get.operation.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L29">database/operations/get.operation.ts:29</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The datastore where the operation takes place.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -203,9 +239,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L77">database/operations/get.operation.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L166">database/operations/get.operation.ts:166</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the number of items in the result.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -220,13 +261,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L24">database/operations/get.operation.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L59">database/operations/get.operation.ts:59</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the filtering method.</p>
+								</div>
+								<h4 id="usage">Usage</h4>
+								<pre><code class="language-ts"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Datastore&lt;Human&gt;(...)
+<span class="hljs-keyword">const</span> items = <span class="hljs-keyword">await</span> store.get().filter(<span class="hljs-function">(<span class="hljs-params">human</span>) =&gt;</span> human.age &gt; <span class="hljs-number">18</span>).run()
+<span class="hljs-built_in">console</span>.log(items)</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>method: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Filtering method to use. <code>method</code> is a user-defined callback,
+											and it is fired on every object in the database. If the callback returns <code>true</code>,
+										object is said to &#39;pass&#39; the filter, and is added to the final list.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -248,6 +303,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -261,9 +317,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L68">database/operations/get.operation.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L151">database/operations/get.operation.ts:151</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the first element of the result.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -278,9 +339,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L72">database/operations/get.operation.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L158">database/operations/get.operation.ts:158</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the last element of the result.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -295,9 +361,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L29">database/operations/get.operation.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L65">database/operations/get.operation.ts:65</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Same as <a href="getoperation.html#sort">sort</a></p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -318,16 +389,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L38">database/operations/get.operation.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L95">database/operations/get.operation.ts:95</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the pagination data.
+									Refer to <a href="../interfaces/paginationdata.html">PaginationData</a> to understand how pagination works.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>data: <a href="../interfaces/paginationdata.html" class="tsd-signature-type">PaginationData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p><code>skip</code> and <code>take</code> values.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -341,9 +422,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L57">database/operations/get.operation.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L137">database/operations/get.operation.ts:137</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Same as <a href="getoperation.html#run">run</a>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -358,10 +444,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L53">database/operations/get.operation.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L130">database/operations/get.operation.ts:130</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Runs the operation.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Array of objects that are filtered (if you have set the filter),
+								sorted (if you have set the sorting data) and paginated (if you have set
+							the pagination data).</p>
 						</li>
 					</ul>
 				</section>
@@ -375,16 +469,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L43">database/operations/get.operation.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L107">database/operations/get.operation.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the <code>skip</code>.
+									Refer to <a href="getoperation.html#paginate">paginate</a> for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>skip: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The value of <code>skip</code>.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -398,16 +502,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L33">database/operations/get.operation.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L83">database/operations/get.operation.ts:83</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the sorting method.</p>
+								</div>
+								<h4 id="usage">Usage</h4>
+								<pre><code class="language-ts"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Datastore&lt;Human&gt;(...)
+<span class="hljs-keyword">const</span> items = <span class="hljs-keyword">await</span> store.get().sort({age: {sort: SortDirection.Ascending}}).run()
+<span class="hljs-built_in">console</span>.log(items)</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>data: <a href="../globals.html#isort" class="tsd-signature-type">ISort</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Sorting method to use. <code>method</code> must be a type of <code>ISort&lt;T&gt;</code>.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -421,9 +538,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L48">database/operations/get.operation.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L119">database/operations/get.operation.ts:119</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the <code>take</code>.
+									Refer to <a href="getoperation.html#paginate">paginate</a> for more information.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -431,6 +554,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="getoperation.html" class="tsd-signature-type">GetOperation</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -444,9 +568,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L20">database/operations/get.operation.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L39">database/operations/get.operation.ts:39</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Same as <a href="getoperation.html#filter">filter</a>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -484,16 +613,21 @@
 					<div class="tsd-signature tsd-kind-icon">_pagination<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L12">database/operations/get.operation.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L23">database/operations/get.operation.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Pagination data to use. Defaults to <code>{skip: 0, take: Infinity}</code></p>
+						</div>
+					</div>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
 						<a name="_pagination.skip-1" class="tsd-anchor"></a>
 						<h3>skip</h3>
 						<div class="tsd-signature tsd-kind-icon">skip<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L12">database/operations/get.operation.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L23">database/operations/get.operation.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -503,7 +637,7 @@
 						<div class="tsd-signature tsd-kind-icon">take<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Infinity</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/get.operation.ts#L12">database/operations/get.operation.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/get.operation.ts#L23">database/operations/get.operation.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -543,9 +677,6 @@
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
@@ -610,9 +741,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
-					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="model.html" class="tsd-kind-icon">Model</a>
 					</li>
@@ -644,6 +772,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -651,12 +782,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

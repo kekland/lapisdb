@@ -12,13 +12,30 @@ import { Model } from '../model/model';
 import { EditOperation } from '../operations/edit.operation';
 import { DeleteOperation, BatchedDeleteOperation } from '../operations/delete.operation';
 
+/**
+ * See [[createReadStream]] for more info.
+ */
 export interface DatastoreStreamIteratorData {
+  /** ***Identifier** of an object. Same as `value.meta.id`. Mostly unused. */
   key: string;
+  
+  /** The **object** itself in a plain object form. To convert it to class use [[convertToClassWithId]]. */
   value: any;
 }
 
+/**
+ * Information on how to paginate an array.
+ */
 export interface PaginationData {
+  /**
+   * How many items to skip from the start.
+   */
   skip: number;
+
+  /**
+   * How many items to take after skipping `skip` items.
+   * If you want to take all of the items, set this to `Infinity`.
+   */
   take: number;
 }
 
@@ -84,7 +101,7 @@ export class Datastore<T extends Model<T>> {
    * console.log(human)
    * ```
    * 
-   * @returns A new instance of `PushOperation<T>`. More info is on [[PushOperation]].
+   * @returns A new instance of `PushOperation<T>`. More info on this is in [[PushOperation]].
    * */
   public push(): PushOperation<T> {
     return new PushOperation(this)
@@ -101,7 +118,7 @@ export class Datastore<T extends Model<T>> {
    * console.log(humans)
    * ```
    * 
-   * @returns A new instance of `BatchedPushOperation<T>`. More info is on [[BatchedPushOperation]].
+   * @returns A new instance of `BatchedPushOperation<T>`. More info on this is in [[BatchedPushOperation]].
    * */
   public pushBatched(): BatchedPushOperation<T> {
     return new BatchedPushOperation(this)
@@ -117,7 +134,7 @@ export class Datastore<T extends Model<T>> {
    * console.log(humans)
    * ```
    * 
-   * @returns A new instance of `GetOperation<T>`. More info is on [[GetOperation]].
+   * @returns A new instance of `GetOperation<T>`. More info on this is in [[GetOperation]].
    * */
   public get(): GetOperation<T> {
     return new GetOperation(this) 
@@ -134,7 +151,7 @@ export class Datastore<T extends Model<T>> {
    * console.log(humanEdited)
    * ```
    * 
-   * @returns A new instance of `EditOperation<T>`. More info is on [[EditOperation]].
+   * @returns A new instance of `EditOperation<T>`. More info on this is in [[EditOperation]].
    * */
   public edit(): EditOperation<T> {
     return new EditOperation(this)
@@ -151,7 +168,7 @@ export class Datastore<T extends Model<T>> {
    * console.log(humanEdited)
    * ```
    * 
-   * @returns A new instance of `DeleteOperation<T>`. More info is on [[DeleteOperation]].
+   * @returns A new instance of `DeleteOperation<T>`. More info on this is in [[DeleteOperation]].
    * */
   public delete(): DeleteOperation<T> {
     return new DeleteOperation(this)
@@ -167,7 +184,7 @@ export class Datastore<T extends Model<T>> {
    * await store.delete().ids(humanIds).run()
    * ```
    * 
-   * @returns A new instance of `BatchedDeleteOperation<T>`. More info is on [[BatchedDeleteOperation]].
+   * @returns A new instance of `BatchedDeleteOperation<T>`. More info on this is in [[BatchedDeleteOperation]].
    * */
   public deleteBatched(): BatchedDeleteOperation<T> {
     return new BatchedDeleteOperation(this)

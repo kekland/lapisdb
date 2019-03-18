@@ -66,11 +66,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This operation <strong>deletes</strong> a list of objects from the database.</p>
+					</div>
+					<h4 id="usage">Usage</h4>
+					<p>See <a href="datastore.html#deletebatched">deleteBatched</a>.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T<span class="tsd-signature-symbol">: </span><a href="model.html" class="tsd-signature-type">Model</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The model of the Datastore. <code>T</code> must extend from <code>Model</code>.</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -132,13 +146,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L38">database/operations/delete.operation.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L81">database/operations/delete.operation.ts:81</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>store: <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The datastore where the deletion operation takes place.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="batcheddeleteoperation.html" class="tsd-signature-type">BatchedDeleteOperation</a></h4>
@@ -154,9 +175,14 @@
 					<div class="tsd-signature tsd-kind-icon">_identifiers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L38">database/operations/delete.operation.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L81">database/operations/delete.operation.ts:81</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Identifiers of objects to delete.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_store" class="tsd-anchor"></a>
@@ -164,9 +190,14 @@
 					<div class="tsd-signature tsd-kind-icon">_store<span class="tsd-signature-symbol">:</span> <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L37">database/operations/delete.operation.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L78">database/operations/delete.operation.ts:78</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The datastore where the operation takes place.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -181,9 +212,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L73">database/operations/delete.operation.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L153">database/operations/delete.operation.ts:153</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Same as <a href="batcheddeleteoperation.html#run">run</a>.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>If one of the identifiers does not exist or something happened with the database.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -198,16 +239,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L54">database/operations/delete.operation.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L115">database/operations/delete.operation.ts:115</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add the identifier of a single object to the deletion list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object to delete.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -221,16 +271,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L64">database/operations/delete.operation.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L136">database/operations/delete.operation.ts:136</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add an array of identifiers to the deletion list.
+									Same as <a href="batcheddeleteoperation.html#ids">ids</a>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ids: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of identifiers to delete.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -244,16 +304,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L59">database/operations/delete.operation.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L125">database/operations/delete.operation.ts:125</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add an array of identifiers to the deletion list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>ids: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of identifiers to delete.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -267,16 +336,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L44">database/operations/delete.operation.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L95">database/operations/delete.operation.ts:95</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a single item to the deletion list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An item to delete.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -290,16 +368,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L49">database/operations/delete.operation.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L105">database/operations/delete.operation.ts:105</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add an array of items to the deletion list.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>items: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of items to delete.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -313,9 +400,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/delete.operation.ts#L69">database/operations/delete.operation.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/delete.operation.ts#L145">database/operations/delete.operation.ts:145</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Runs the operation. Deletes all the objects from the list.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>If one of the identifiers does not exist or something happened with the database.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -393,16 +490,10 @@
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="model.html" class="tsd-kind-icon">Model</a>
@@ -435,6 +526,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -442,12 +536,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

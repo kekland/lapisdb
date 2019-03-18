@@ -66,11 +66,33 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Model is essentialy a set of fields and functions that is used in <code>Datastore</code>.</p>
+					</div>
+					<p>It contains <code>.meta</code> field, that contains the identifier of an object, etc.</p>
+					<h4 id="usage">Usage</h4>
+					<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Human <span class="hljs-keyword">extends</span> Model&lt;Human&gt; {
+  name: <span class="hljs-built_in">string</span>;
+
+  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.name = name
+  }
+}</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T<span class="tsd-signature-symbol">: </span><a href="model.html" class="tsd-signature-type">Model</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The object that extends the model.</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -79,14 +101,6 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">Model</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="human.html" class="tsd-signature-type">Human</a>
-							</li>
-							<li>
-								<a href="human.html" class="tsd-signature-type">Human</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</section>
@@ -111,7 +125,6 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="model.html#delete" class="tsd-kind-icon">delete</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="model.html#log" class="tsd-kind-icon">log</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="model.html#save" class="tsd-kind-icon">save</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="model.html#setcreatedtime" class="tsd-kind-icon">set<wbr>Created<wbr>Time</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="model.html#setdata" class="tsd-kind-icon">set<wbr>Data</a></li>
@@ -134,13 +147,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L14">database/model/model.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L48">database/model/model.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of Model.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>memberof</dt>
+									<dd><p>Model</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Optional data to pass.</p>
+										</div>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5><span class="tsd-flag ts-flagOptional">Optional</span> id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
@@ -164,9 +192,15 @@
 					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iobjectmetadata.html" class="tsd-signature-type">IObjectMetadata</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L11">database/model/model.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L44">database/model/model.ts:44</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Meta contains the &#39;metadata&#39; fields of an object. This includes the
+							identifier, creation time and last updated time.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="store" class="tsd-anchor"></a>
@@ -174,9 +208,14 @@
 					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L14">database/model/model.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L48">database/model/model.ts:48</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><code>Datastore</code> object that handles this model.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -191,50 +230,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L60">database/model/model.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L132">database/model/model.ts:132</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="log" class="tsd-anchor"></a>
-					<h3>log</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">log<span class="tsd-signature-symbol">(</span>func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L64">database/model/model.ts:64</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>func: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>any<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>any: <span class="tsd-signature-type">any</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes the object via <code>Datastore</code>. You have to make sure that <code>this.store</code>
+									is not null.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -249,9 +253,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L51">database/model/model.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L119">database/model/model.ts:119</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Saves the object via <code>Datastore</code>. You have to make sure that <code>this.store</code>
+									is not null.</p>
+								</div>
+								<p>If the object already has <code>this.meta.id</code> set, it will update the object in
+									the database under <code>this.meta.id</code>. Otherwise, if the identifier not set,
+								it will create a new object in the database and set the <code>this.meta</code> field.</p>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -266,13 +279,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L37">database/model/model.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L87">database/model/model.ts:87</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the creation time of an object.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>time: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>UNIX timestamp of the time.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -289,13 +310,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L27">database/model/model.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L72">database/model/model.ts:72</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the fields that are required by <code>Datastore</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>data: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object and the <code>Datastore</code> object.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
@@ -320,13 +349,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L47">database/model/model.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L107">database/model/model.ts:107</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the <code>Datastore</code> object of this model.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>store: <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The <code>Datastore</code> object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -343,13 +380,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/model/model.ts#L42">database/model/model.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/model/model.ts#L97">database/model/model.ts:97</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the last updated time of an object.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>time: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>UNIX timestamp of the time.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -393,16 +438,10 @@
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -420,9 +459,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="model.html#delete" class="tsd-kind-icon">delete</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="model.html#log" class="tsd-kind-icon">log</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="model.html#save" class="tsd-kind-icon">save</a>
@@ -471,6 +507,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -478,12 +517,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

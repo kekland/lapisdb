@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A class that holds the sorting data and sorts an array of objects.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -120,13 +127,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.ts#L4">database/sort/sort.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.ts#L8">database/sort/sort.ts:8</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of SortOperator.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sort: <a href="../globals.html#isort" class="tsd-signature-type">ISort</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Sorting instructions.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="sortoperator.html" class="tsd-signature-type">SortOperator</a></h4>
@@ -142,9 +159,14 @@
 					<div class="tsd-signature tsd-kind-icon">sort<span class="tsd-signature-symbol">:</span> <a href="../globals.html#isort" class="tsd-signature-type">ISort</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.ts#L4">database/sort/sort.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.ts#L8">database/sort/sort.ts:8</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Sorting instructions</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -159,16 +181,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.ts#L10">database/sort/sort.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.ts#L24">database/sort/sort.ts:24</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Is <code>field</code> a function?</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>field: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The field to check.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>If the field is function, returns <code>true</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -182,16 +213,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/sort/sort.ts#L14">database/sort/sort.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/sort/sort.ts#L34">database/sort/sort.ts:34</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Runs the sorting process. Uses JavaScript&#39;s <code>Array.sort()</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>values: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>What to sort</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>Sorted array</p>
 						</li>
 					</ul>
 				</section>
@@ -232,16 +272,10 @@
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="model.html" class="tsd-kind-icon">Model</a>
@@ -292,6 +326,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -299,12 +336,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

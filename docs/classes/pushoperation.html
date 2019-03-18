@@ -66,11 +66,25 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This operation <strong>pushes</strong> an object to the database.</p>
+					</div>
+					<h4 id="usage">Usage</h4>
+					<p>See <a href="datastore.html#push">Datastore.push</a>.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T<span class="tsd-signature-symbol">: </span><a href="model.html" class="tsd-signature-type">Model</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The model of the Datastore. <code>T</code> must extend from <code>Model</code>.</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -128,13 +142,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L9">database/operations/push.operation.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L20">database/operations/push.operation.ts:20</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>store: <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The datastore where the deletion operation takes place.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="pushoperation.html" class="tsd-signature-type">PushOperation</a></h4>
@@ -150,9 +171,14 @@
 					<div class="tsd-signature tsd-kind-icon">_store<span class="tsd-signature-symbol">:</span> <a href="datastore.html" class="tsd-signature-type">Datastore</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L9">database/operations/push.operation.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L20">database/operations/push.operation.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The datastore where the operation takes place.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_toadd" class="tsd-anchor"></a>
@@ -160,9 +186,14 @@
 					<div class="tsd-signature tsd-kind-icon">_to<wbr>Add<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L8">database/operations/push.operation.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L17">database/operations/push.operation.ts:17</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Object to push.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -177,16 +208,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L15">database/operations/push.operation.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L34">database/operations/push.operation.ts:34</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the item to push into the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An item to push.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>Returns this operation again, to make chaining methods possible.</p>
 						</li>
 					</ul>
 				</section>
@@ -200,10 +240,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L24">database/operations/push.operation.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L54">database/operations/push.operation.ts:54</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Runs the operation and pushes the item.</p>
+								</div>
+								<p>Same as <a href="pushoperation.html#run">run</a></p>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the item with <code>item.meta</code> field set.</p>
 						</li>
 					</ul>
 				</section>
@@ -217,10 +264,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/operations/push.operation.ts#L20">database/operations/push.operation.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/operations/push.operation.ts#L43">database/operations/push.operation.ts:43</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Runs the operation and pushes the item.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the item with <code>item.meta</code> field set.</p>
 						</li>
 					</ul>
 				</section>
@@ -261,16 +314,10 @@
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="model.html" class="tsd-kind-icon">Model</a>
@@ -327,6 +374,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -334,12 +384,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>

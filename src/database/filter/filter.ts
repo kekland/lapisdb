@@ -99,13 +99,31 @@ export class Filter<T, K extends T> implements FilterOperator<T> {
   }
 }*/
 
+/**
+ * A class that holds the **filter** method and runs the filter on given value.
+ *
+ * @typeparam T Type of the object that filter will be run against.
+ */
 export class FilterOperator<T> {
+  /** The filtering method. */
   private method: (value: IFilter<T>) => boolean;
   
+  /**
+   * Runs the filter against `value`, and returns `true` if the value
+   * passes the filter, `false` otherwise.
+   * 
+   * @param value An object to run filter against
+   * @returns Did the object pass the filter?
+   */
   run(value: T): boolean {
     return this.method(value)
   }
 
+  /**
+   * Creates an instance of FilterOperator.
+   * @param method The filtering method.
+   * @memberof FilterOperator
+   */
   constructor(method: (value: IFilter<T>) => boolean) {
     this.method = method
   }

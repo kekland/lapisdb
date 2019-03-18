@@ -66,6 +66,16 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>This class contains some lower-level abstractions for the <strong>LevelDB</strong>.</p>
+					</div>
+					<h4 id="usage">Usage</h4>
+					<p>You should not instantiate this class, consider using <a href="datastore.html">Datastore</a> instead.
+					After that, you can access this class through <code>datastore.methods</code>.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -104,15 +114,14 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="datastoreoperations.html#converttoclass" class="tsd-kind-icon">convert<wbr>ToClass</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="datastoreoperations.html#converttoclassarray" class="tsd-kind-icon">convert<wbr>ToClass<wbr>Array</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="datastoreoperations.html#converttoclasswithid" class="tsd-kind-icon">convert<wbr>ToClass<wbr>With<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="datastoreoperations.html#converttoplain" class="tsd-kind-icon">convert<wbr>ToPlain</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#count" class="tsd-kind-icon">count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private"><a href="datastoreoperations.html#createreadstream" class="tsd-kind-icon">create<wbr>Read<wbr>Stream</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="datastoreoperations.html#createreadstream" class="tsd-kind-icon">create<wbr>Read<wbr>Stream</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#delete" class="tsd-kind-icon">delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#getone" class="tsd-kind-icon">get<wbr>One</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="datastoreoperations.html#iteratethroughobjects" class="tsd-kind-icon">iterate<wbr>Through<wbr>Objects</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#iteratethroughobjectswithfilter" class="tsd-kind-icon">iterate<wbr>Through<wbr>Objects<wbr>With<wbr>Filter</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#push" class="tsd-kind-icon">push</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#put" class="tsd-kind-icon">put</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="datastoreoperations.html#setcreatedtime" class="tsd-kind-icon">set<wbr>Created<wbr>Time</a></li>
@@ -136,13 +145,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L13">database/datastore/datastore.methods.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L26">database/datastore/datastore.methods.ts:26</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an instance of DatastoreOperations.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>db: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Function that returns the Datastore object.</p>
+										</div>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -158,9 +177,19 @@
 								</li>
 								<li>
 									<h5>store: <span class="tsd-signature-type">LevelUp</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EncodingDown</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>An instance of LevelDB database.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>type: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Function that returns the type of a model.</p>
+										</div>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -188,9 +217,14 @@
 					<div class="tsd-signature tsd-kind-icon">_store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L11">database/datastore/datastore.methods.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L20">database/datastore/datastore.methods.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <strong>Datastore</strong> object that is parent of this object.</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -213,9 +247,14 @@
 					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LevelUp</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EncodingDown</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L12">database/datastore/datastore.methods.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L23">database/datastore/datastore.methods.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><strong>LevelDB</strong> database object.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="type" class="tsd-anchor"></a>
@@ -223,9 +262,14 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L13">database/datastore/datastore.methods.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L26">database/datastore/datastore.methods.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Type of an object stored.</p>
+						</div>
+					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
@@ -255,39 +299,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L25">database/datastore/datastore.methods.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L55">database/datastore/datastore.methods.ts:55</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a plain object to a class object. Uses <code>class-transformer</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to convert to a class object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="converttoclassarray" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> convert<wbr>ToClass<wbr>Array</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">convert<wbr>ToClass<wbr>Array<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L35">database/datastore/datastore.methods.ts:35</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>item: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>Object with type <code>T</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -301,9 +331,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L29">database/datastore/datastore.methods.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L65">database/datastore/datastore.methods.ts:65</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a plain object to a class object, while also setting its general parameters.
+									Uses <code>class-transformer</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -311,9 +347,13 @@
 								</li>
 								<li>
 									<h5>item: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to convert to a class object and set its parameters.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<p>Object with type <code>T</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -327,16 +367,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L21">database/datastore/datastore.methods.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L46">database/datastore/datastore.methods.ts:46</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a class item to plain item. Uses <code>class-transformer</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to convert to plain object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<p>Plain object.</p>
 						</li>
 					</ul>
 				</section>
@@ -350,45 +399,75 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L98">database/datastore/datastore.methods.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L186">database/datastore/datastore.methods.ts:186</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the number of items that match the filter and are in range of
+										your pagination data (skip, take). If none of those arguments are
+									passed, returns the total number of objects in the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <a href="filteroperator.html" class="tsd-signature-type">FilterOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Filter object. Must be <code>FilterOperator&lt;T&gt;</code>.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pagination: <a href="../interfaces/paginationdata.html" class="tsd-signature-type">PaginationData</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Pagination object. Must be <code>PaginationData</code>.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The number of objects that match the filter and the pagination data.</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 					<a name="createreadstream" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Read<wbr>Stream</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private">
+					<h3>create<wbr>Read<wbr>Stream</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 						<li class="tsd-signature tsd-kind-icon">create<wbr>Read<wbr>Stream&lt;I&gt;<span class="tsd-signature-symbol">(</span>onData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L56">database/datastore/datastore.methods.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L122">database/datastore/datastore.methods.ts:122</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Created a read stream on LevelDB database. <code>onData</code> callback will be <strong>called on each object</strong>,
+										and if the callback returns <strong>non-null</strong> value, it will add this value to an array and return
+									it later, when the stream will end.</p>
+								</div>
+								<h4 id="usage">Usage</h4>
+								<pre><code class="language-ts"><span class="hljs-keyword">const</span> allObjects = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.createReadStream&lt;T&gt;(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> data.value)</code></pre>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>I</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the values that are added to an array.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>onData: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your own callback. If the callback returns value of type <code>I</code> or non-null value,
+										it will add the returned value to an array.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -426,13 +505,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L133">database/datastore/datastore.methods.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L246">database/datastore/datastore.methods.ts:246</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes an item in the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -449,16 +536,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L90">database/datastore/datastore.methods.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L169">database/datastore/datastore.methods.ts:169</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all items that match the filter. Gets all of the items if no filter is given.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <a href="filteroperator.html" class="tsd-signature-type">FilterOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Filter object. Must be <code>FilterOperator&lt;T&gt;</code>.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An array of objects that match the filter.</p>
 						</li>
 					</ul>
 				</section>
@@ -472,36 +568,60 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L111">database/datastore/datastore.methods.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L206">database/datastore/datastore.methods.ts:206</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an object based on its id.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>If object was not found.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The object.</p>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="iteratethroughobjects" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> iterate<wbr>Through<wbr>Objects</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Through<wbr>Objects<span class="tsd-signature-symbol">(</span>onPass<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, filter<span class="tsd-signature-symbol">?: </span><a href="filteroperator.html" class="tsd-signature-type">FilterOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="iteratethroughobjectswithfilter" class="tsd-anchor"></a>
+					<h3>iterate<wbr>Through<wbr>Objects<wbr>With<wbr>Filter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">iterate<wbr>Through<wbr>Objects<wbr>With<wbr>Filter<span class="tsd-signature-symbol">(</span>onPass<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, filter<span class="tsd-signature-symbol">?: </span><a href="filteroperator.html" class="tsd-signature-type">FilterOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L77">database/datastore/datastore.methods.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L150">database/datastore/datastore.methods.ts:150</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Iterates through all objects with a set filter. Calls <code>onPass</code> when a object
+									passes through filter.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>onPass: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your own callback. It will be fired with an object that object
+										successfully passes through filter.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -539,16 +659,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L116">database/datastore/datastore.methods.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L217">database/datastore/datastore.methods.ts:217</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Pushes an object to the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Object to push.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The object with its metadata field filled.</p>
 						</li>
 					</ul>
 				</section>
@@ -562,19 +691,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L126">database/datastore/datastore.methods.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L234">database/datastore/datastore.methods.ts:234</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Updates an item in the database.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object. Same as <code>item.meta.id</code>.</p>
+									</div>
 								</li>
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>New data of the object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The object with updated data.</p>
 						</li>
 					</ul>
 				</section>
@@ -588,13 +729,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L48">database/datastore/datastore.methods.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L96">database/datastore/datastore.methods.ts:96</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the created time of an item to current time.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to set parameters to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -611,16 +760,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L39">database/datastore/datastore.methods.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L76">database/datastore/datastore.methods.ts:76</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets general parameters of an object, such as <code>meta.id</code> and <code>store</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to set parameters to.</p>
+									</div>
 								</li>
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -637,16 +797,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L43">database/datastore/datastore.methods.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L86">database/datastore/datastore.methods.ts:86</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets general parameters of an object when pushing,
+									such as <code>meta.id</code> and <code>store</code>, also <code>meta.created</code> and <code>meta.updated</code>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of an object.</p>
+									</div>
 								</li>
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to set parameters to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -663,13 +835,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/kekland/fdb/blob/c503325/src/database/datastore/datastore.methods.ts#L52">database/datastore/datastore.methods.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/kekland/fdb/blob/9088043/src/database/datastore/datastore.methods.ts#L104">database/datastore/datastore.methods.ts:104</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the last updated time of an item to current time.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to set parameters to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -724,9 +904,6 @@
 								<a href="datastoreoperations.html#converttoclass" class="tsd-kind-icon">convert<wbr>ToClass</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="datastoreoperations.html#converttoclassarray" class="tsd-kind-icon">convert<wbr>ToClass<wbr>Array</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="datastoreoperations.html#converttoclasswithid" class="tsd-kind-icon">convert<wbr>ToClass<wbr>With<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -735,7 +912,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="datastoreoperations.html#count" class="tsd-kind-icon">count</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-private">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="datastoreoperations.html#createreadstream" class="tsd-kind-icon">create<wbr>Read<wbr>Stream</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -747,8 +924,8 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="datastoreoperations.html#getone" class="tsd-kind-icon">get<wbr>One</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="datastoreoperations.html#iteratethroughobjects" class="tsd-kind-icon">iterate<wbr>Through<wbr>Objects</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="datastoreoperations.html#iteratethroughobjectswithfilter" class="tsd-kind-icon">iterate<wbr>Through<wbr>Objects<wbr>With<wbr>Filter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="datastoreoperations.html#push" class="tsd-kind-icon">push</a>
@@ -779,16 +956,10 @@
 						<a href="editoperation.html" class="tsd-kind-icon">Edit<wbr>Operation</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="factory.html" class="tsd-kind-icon">Factory</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="filteroperator.html" class="tsd-kind-icon">Filter<wbr>Operator</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="getoperation.html" class="tsd-kind-icon">Get<wbr>Operation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="human.html" class="tsd-kind-icon">Human</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="model.html" class="tsd-kind-icon">Model</a>
@@ -821,6 +992,9 @@
 						<a href="../globals.html#filterflags" class="tsd-kind-icon">Filter<wbr>Flags</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#icomparator" class="tsd-kind-icon">IComparator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#iedit" class="tsd-kind-icon">IEdit</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -828,12 +1002,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#isort" class="tsd-kind-icon">ISort</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="../globals.html#isortfunction" class="tsd-kind-icon">ISort<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#start" class="tsd-kind-icon">start</a>
 					</li>
 				</ul>
 			</nav>
