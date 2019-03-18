@@ -34,6 +34,11 @@ export class Datastore<T extends Model<T>> {
     this.methods = new DatastoreOperations(() => this, this.store, type)
   }
 
+  public create(data: T) {
+    data.setDb(this)
+    return data
+  }
+
   public push(): PushOperation<T> {
     return new PushOperation(this)
   }

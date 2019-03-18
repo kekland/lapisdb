@@ -11,7 +11,10 @@ import { EditOperation } from './database/operations/edit.operation';
 const bootstrap = async () => {
   const store = new Datastore<Human>('hello', './database', () => Human)
 
-  
+  const myHuman = store.create(new Human('my name', 18, ['1', '2']))
+  console.log(myHuman)
+  await myHuman.save()
+  console.log(myHuman)
 }
 
 bootstrap()

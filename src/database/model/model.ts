@@ -43,8 +43,13 @@ export class Model<T extends Model<T>> {
     this.store = store
   }
 
-  public save() {
-    this.store.edit().item(this).with({}).run()
+  public async save() {
+    if(this.meta && this.meta.id) {
+      await this.store.edit().item(this).with({}).run()
+    }
+    else {
+      await this.store.push().item(this).run()
+    }
   }
 
   public delete() {
