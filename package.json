@@ -24,8 +24,7 @@
     "leveldown": "^4.0.2",
     "levelup": "^4.0.0",
     "moment": "^2.24.0",
-    "nanoid": "^2.0.1",
-    "typeorm": "^0.2.15"
+    "nanoid": "^2.0.1"
   },
   "devDependencies": {
     "@types/encoding-down": "^5.0.0",

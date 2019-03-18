@@ -9,7 +9,7 @@ import { SortOperator } from "./database/sort/sort";
 import { DatastoreOperations } from "./database/datastore/datastore.methods";
 import { IEdit } from "./database/types/edit.types";
 
-export default {
+export {
   Datastore,
   DatastoreOperations,
   GetOperation,
