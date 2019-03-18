@@ -36,17 +36,14 @@ export class Planet extends Model<Planet> {
 
 export let testStore: Datastore<Planet> = null
 
-beforeAll(() => {
+beforeEach(async () => {
   testStore = new Datastore<Planet>('test', './database', () => Planet)
-})
-
-afterAll(async () => {
-  await testStore.methods.store.close()
+  const items = await testStore.get().result()
+  await testStore.deleteBatched().items(items).run()
 })
 
 afterEach(async () => {
-  const items = await testStore.get().result()
-  await testStore.deleteBatched().items(items).run()
+  await testStore.methods.store.close()
 })
 
 export const testCreateRandomPlanets = async (push: boolean = false) => {
@@ -60,9 +57,3 @@ export const testCreateRandomPlanets = async (push: boolean = false) => {
   }
   return data
 }
-
-
-declare var __test__;
-test('__test__ is true', () => {
-  expect(__test__).toBeTruthy()
-})
