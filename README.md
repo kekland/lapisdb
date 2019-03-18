@@ -1,5 +1,11 @@
 # 💥 Sirano
 
+[![star this repo](http://githubbadges.com/star.svg?user=kekland&repo=sirano&style=flat)](https://github.com/kekland/sirano)
+[![fork this repo](http://githubbadges.com/fork.svg?user=kekland&repo=sirano&style=flat)](https://github.com/kekland/sirano/fork)
+[![License](https://img.shields.io/github/license/kekland/sirano.svg)](https://github.com/kekland/sirano)
+[![Version](https://img.shields.io/npm/v/sirano.svg)](https://https://www.npmjs.com/package/sirano)
+[![Downloads](https://img.shields.io/npm/dt/sirano.svg)](https://https://www.npmjs.com/package/sirano)
+
 A **TypeScript** embedded database built on top of [LevelDB](https://github.com/level/level) - a fast and efficient C++ database.
 
 ## ❗ Attention
@@ -8,7 +14,12 @@ I am still working on this project, and many things **might change in future**.
 
 ## 💾 Installation
 
-Right now, I **do not recommend** you to try and download the code - because it is still incomplete. When the project will be ready for usage, I will upload it to **NPM**.
+[**Download via NPM**](https://https://www.npmjs.com/package/sirano)
+
+```bash
+cd my-awesome-project
+npm install --save sirano
+```
 
 ## ❓ Why in the world do I need another database?
 
@@ -16,9 +27,15 @@ During my experience writing **backend services**, I often cannot find a databas
 
 **Sirano** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
 
-Trust me, you will **fall in love** with its syntax.
-
 ## 🔨 How do I use it?
+
+1. [Creating models](#creating-models)
+2. [Creating Datastore](#creating-datastore)
+3. [Pushing objects](#pushing-objects)
+4. [Getting objects](#getting-objects)
+5. [Editing objects](#editing-objects)
+6. [Deleting objects](#deleting-objects)
+7. [Additional features](#additional-features)
 
 ### Creating models
 
@@ -42,6 +59,8 @@ export class Human extends Model<Human> {
 }
 ```
 
+This model will now inherit few methods and fields from **Model** superclass. This includes the special **meta** field, that contains the **id** and *created/last edited* **time** as UNIX timestamp.
+
 ### Creating Datastore
 
 **Sirano** uses low-level **LevelDB** database and provides higher-level abstraction for your objects. To start, you have to create a `Datastore` object.
@@ -55,14 +74,35 @@ const store = new Datastore<Human>('human', './database', () => Human)
 
 ### Pushing objects
 
-**Note:** this will be updated.
+To push object, you call **.push()** method on the datastore, then pass an object to push via **.item()** method.
 
 ```ts
-const human = new Human(`John`, 19);
-await store.methods.push(human)
+let human = new Human(`John`, 19);
+human = await store.push().item(human).run()
+  
+// Now our human will contain field called 'meta'.
+// {created: number, updated: number, id: string}
+console.log(human.meta)
+```
 
-// Now human will contain field called 'id'.
-console.log(human.id) //nanoId identifier.
+You can also push multiple objects at once using **.pushBatched()** method. This will increase the performance significantly if the number of objects is over 100.
+
+```ts
+const operation = await store.pushBatched()
+for(let i = 0; i < 100; i++) {
+  operation.item(new Human(`Human ${i}`, i))
+}
+const humans = await operation.run()
+```
+
+Or, you can add an array of objects via **.items()**.
+
+```ts
+let humans: Human[] = []
+for(let i = 0; i < 100; i++) {
+  humans.push(new Human(`Human ${i}`, i))
+}
+humans = await store.pushBatched().items(humans).run()
 ```
 
 ### Getting objects
@@ -109,108 +149,26 @@ const data: Human[] = await store.get()
 
 **Sirano's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
 
-To filter, you simply call a .filter() method, where you can pass various objects to do some complex filtering.
-
-The following basic example uses the Filter operator.
+To filter, you simply call a .filter() method, where you pass a function to call on each object.
 
 ```ts
 // Get all humans with age over 18
 const data: Human[] = await store.get()
-  .filter(new Filter({
-    age: {operator: 'gt', value: 18}
-  }))
+  .filter((human) => human.age > 18)
   .result()
 
 // Get all humans with name John
 const data: Human[] = await store.get()
-  .filter(new Filter({
-    name: 'John'
-  }))
-  .result()
-
-// Or you can do this
-const data: Human[] = await store.get()
-  .filter(new Filter({
-    name: {operator: 'eq', value: 'John'}
-  }))
+  .filter((human) => human.name == 'John')
   .result()
 
 // Get humans with name Albert that are over 18
 const data: Human[] = await store.get()
-  .filter(new Filter({
-    name: 'Albert',
-    age: {operator: 'gt', value: 18}
-  }))
+  .filter((human) => human.name == 'Albert' && human.age > 18)
   .result()
 ```
 
-#### Complex filters
-
-To do some **complex filtering** (e.g. using OR, AND, NOT operations) you can use objects with the same name. Available filters are:
-
-- **And** - takes its inputs and runs filters in all them, returning **true** if all of its inputs return **true**, otherwise returns **false**.
-- **Or** - takes its inputs and runs filters in all of them, returning **true** if at least one of its inputs return **true**, otherwise returns **false**
-- **Not** - takes single input and returns the inverse of that filter.
-- **Filter** - takes filter data and runs the value against it, returning **true** if the value passes the filter, **false** otherwise.
-
-Examples:
-
-```ts
-// Get humans with either the name Albert or that are over 18.
-// (name == 'Albert') || (age > 18)
-const data: Human[] = await store.get()
-  .filter(
-    new Or(
-      new Filter({
-        name: 'Albert'
-      }),
-      new Filter({
-        age: {operator: 'gt', value: 18}
-      })
-    )
-  )
-  .result()
-
-// Get humans that are not named Albert and that are over 18.
-// (name != 'Albert') && (age > 18)
-const data: Human[] = await store.get()
-  .filter(
-    new And(
-      new Not(
-        Filter({
-          name: 'Albert'
-        })
-      ),
-      new Filter({
-        age: {operator: 'gt', value: 18}
-      })
-    )
-  )
-  .result()
-
-// Get humans that are either below 6 or older than 25 that are named John.
-// (((age < 6) || (age > 25)) && (name == 'John'))
-const data: Human[] = await store.get()
-  .filter(
-    new And(
-      new Or(
-        new Filter({
-          age: {operator: 'less', value: 6}
-        }),
-        new Filter({
-          age: {operator: 'greater', value: 25}
-        })
-      ),
-      new Filter({
-        name: 'John'
-      })
-    )
-  )
-
-// You get the point.
-```
-
-That's the structure of **filters**. Even though it might be a **lot of text**, but the nice point about it is that you get **autocompletion suggestions** while writing it - which is insanely cool - you don't need to memorize the keys and everything. This increases your efficiency a lot.
+In the filtering function you can do whatever you want.
 
 #### Sorting
 
@@ -253,9 +211,7 @@ const data: Human[] = await store.get()
       sort: SortDirection.Descending,
     }
   }))
-  .filter(new Not(
-    new Filter({ name: 'Andrew' })
-  ))
+  .filter((human) => human.name != 'Andrew')
   .skip(0)
   .take(3)
   .result()
@@ -263,15 +219,64 @@ const data: Human[] = await store.get()
 
 ### Editing objects
 
-*Coming soon*
+In **Sirano**, there are two ways to edit an object.
+
+The first way is to create new **EditOperation** object, then call required functions.
+
+```ts
+// Set the age of an object with id 'my-id' to 19.
+await store.edit().id('my-id').with({age: 19}).run()
+
+// Or, you can do the same with passing an object instead of it
+const human = await store.get().first()
+await store.edit().item(human).with({age: human.age + 1}).run()
+```
+
+The second way is to get an object via **GetOperation**, then edit its fields and call **.save()** on it.
+
+```ts
+const human = await store.get().first()
+human.age++
+await human.save()
+```
 
 ### Deleting objects
 
-*Coming soon*
+Again, there are two ways to delete an object.
+
+You can call **.delete()** method on the Datastore object and pass either the object or id.
+
+```ts
+await store.delete().id('my-id').run()
+
+// Or:
+const human = await store.get().first()
+await store.delete().item(human).run()
+```
+
+Just as with the Push operation, there is also the batched version.
+
+```ts
+await store.deleteBatched().ids(['a', 'b']).run()
+
+// Or:
+// This will delete all items.
+const items = await store.get().run()
+await store.deleteBatched().items(items).run()
+```
+
+And, you can call the **.delete()** method on the Model object itself.
+
+```ts
+const item = await store.get().first()
+await item.delete()
+```
+
+Of course, if you need to delete large amounts of data, using batched version will be faster.
 
 ### Additional features
 
-*Coming soon*
+*Coming soon*: hooks, server, etc.
 
 ## Contact me
 
