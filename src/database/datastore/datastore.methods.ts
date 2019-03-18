@@ -1,10 +1,11 @@
-import { Model } from "../../model";
 import { LevelUp } from "levelup";
 import EncodingDown from "encoding-down";
 import { FilterOperator } from "../filter/filter";
 import { PaginationData, DatastoreStreamIteratorData, Datastore } from "./datastore";
 import { classToPlain, plainToClass } from "class-transformer";
 import generateId from 'nanoid'
+import { Model } from "../model/model";
+import * as moment from 'moment'
 
 export class DatastoreOperations<T extends Model<T>> {
   private db: () => Datastore<T>;
@@ -37,6 +38,19 @@ export class DatastoreOperations<T extends Model<T>> {
 
   private setData(item: T, id: string) {
     item.setData({ id, db: this.db() })
+  }
+
+  public setPushData(id: string, item: T) {
+    this.setData(item, id)
+    this.setCreatedTime(item)
+    this.setUpdatedTime(item)
+  }
+  public setCreatedTime(item: T) {
+    item.setCreatedTime(moment.now())
+  }
+
+  public setUpdatedTime(item: T) {
+    item.setUpdatedTime(moment.now())
   }
 
   private createReadStream<I>(onData: (data: DatastoreStreamIteratorData) => I | null): Promise<I[]> {
@@ -102,13 +116,21 @@ export class DatastoreOperations<T extends Model<T>> {
 
   async push(item: T): Promise<T> {
     const id = generateId()
-    await this.store.put(id, this.convertToPlain(item))
 
-    this.setData(item, id)
+    this.setPushData(id, item)
+
+    await this.store.put(id, this.convertToPlain(item))
     return item
   }
 
-  async remove(id: string): Promise<void> {
+  async put(id: string, item: T): Promise<T> {
+    this.setUpdatedTime(item)
+
+    await this.store.put(id, this.convertToPlain(item))
+    return item
+  }
+
+  async delete(id: string): Promise<void> {
     await this.store.del(id)
   }
 }

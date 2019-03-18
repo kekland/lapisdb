@@ -1,4 +1,3 @@
-import { Model } from "../../model";
 import { BaseOperation } from "./database.operations";
 import { FilterOperator } from "../filter/filter";
 import { PaginationData, Datastore } from "../datastore/datastore";
@@ -6,6 +5,7 @@ import { SortOperator } from "../sort/sort";
 import { Utils } from "../../utils";
 import { ISort } from "../sort/sort.types";
 import { IFilter } from "../filter/filter.types";
+import { Model } from "../model/model";
 
 export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   private _filter: FilterOperator<T> = null;

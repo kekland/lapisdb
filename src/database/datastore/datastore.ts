@@ -7,8 +7,10 @@ import { classToPlain, plainToClass } from 'class-transformer'
 import EncodingDown from 'encoding-down';
 import { DatastoreOperations } from './datastore.methods';
 import { GetOperation } from '../operations/get.operation';
-import { Model } from '../../model';
 import { PushOperation } from '../operations/push.operation';
+import { Model } from '../model/model';
+import { EditOperation } from '../operations/edit.operation';
+import { DeleteOperation } from '../operations/delete.operation';
 
 export interface DatastoreStreamIteratorData {
   key: string;
@@ -38,5 +40,13 @@ export class Datastore<T extends Model<T>> {
 
   public get(): GetOperation<T> {
     return new GetOperation(this) 
+  }
+
+  public edit(): EditOperation<T> {
+    return new EditOperation(this)
+  }
+
+  public delete(): DeleteOperation<T> {
+    return new DeleteOperation(this)
   }
 }

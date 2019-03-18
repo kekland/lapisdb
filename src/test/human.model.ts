@@ -1,4 +1,4 @@
-import { Model } from '../model';
+import { Model } from "../database/model/model";
 
 export class Human extends Model<Human> {
   name: string;
