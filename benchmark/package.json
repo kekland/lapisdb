@@ -1,0 +1,24 @@
+{
+  "name": "sirano-benchmark",
+  "version": "0.1.0",
+  "description": "A benchmark for Sirano Database",
+  "main": "benchmark.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kekland/sirano.git"
+  },
+  "author": "kekland <kk.erzhan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kekland/sirano/issues"
+  },
+  "homepage": "https://github.com/kekland/sirano#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "moment": "^2.24.0",
+    "sirano": "^0.1.4"
+  }
+}

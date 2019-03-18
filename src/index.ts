@@ -7,7 +7,7 @@ import { Model } from "./database/model/model";
 import { FilterOperator } from "./database/filter/filter";
 import { SortOperator } from "./database/sort/sort";
 import { DatastoreOperations } from "./database/datastore/datastore.methods";
-import { IEdit } from "./database/types/edit.types";
+import { SortDirection } from "./database/sort/sort.types";
 
 export {
   Datastore,
@@ -20,5 +20,6 @@ export {
   BatchedDeleteOperation,
   Model,
   FilterOperator,
-  SortOperator
+  SortOperator,
+  SortDirection
 }
