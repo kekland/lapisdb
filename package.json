@@ -1,6 +1,6 @@
 {
   "name": "sirano",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
   "scripts": {
