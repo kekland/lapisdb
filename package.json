@@ -20,13 +20,13 @@
     "json"
   ],
   "homepage": "https://kekland.github.io/sirano",
-  "bugs": { 
-    "url" : "https://github.com/kekland/sirano/issues", 
-    "email" : "kk.erzhan@gmail.com"
+  "bugs": {
+    "url": "https://github.com/kekland/sirano/issues",
+    "email": "kk.erzhan@gmail.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/kekland/sirano.git"
+    "type": "git",
+    "url": "https://github.com/kekland/sirano.git"
   },
   "author": "kekland <kk.erzhan@gmail.com>",
   "license": "MIT",
@@ -40,12 +40,15 @@
   },
   "devDependencies": {
     "@types/encoding-down": "^5.0.0",
+    "@types/jest": "^24.0.11",
     "@types/leveldown": "^4.0.0",
     "@types/levelup": "^3.1.0",
     "@types/nanoid": "^1.2.1",
+    "jest": "^24.5.0",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.0",
     "ts-loader": "^5.3.3",
     "typedoc": "^0.14.2",
     "typedoc-webpack-plugin": "^1.1.4",
