@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
@@ -9,9 +9,8 @@
     "experimentalDecorators": true,
     "target": "es6",
     "sourceMap": true,
-    "allowJs": true,
     "esModuleInterop": true,
-    "outDir": "./build"
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*"
