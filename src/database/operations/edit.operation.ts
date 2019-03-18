@@ -9,10 +9,6 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
   private _item: T;
   private _data: IEdit<T>;
 
-  public async run() {
-    await this.edit()
-  }
-
   constructor(store: Datastore<T>, id?: string, item?: T) {
     this._store = store
     this._id = id
@@ -21,16 +17,23 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
 
   public item(item: T) {
     this._item = item
+    return this
   }
 
   public id(id: string) {
     this._id = id
+    return this
   }
 
   public with(data: IEdit<T>) {
     this._data = data
+    return this
   }
 
+  public async run() {
+    await this.edit()
+  }
+  
   public async edit() {
     if (this._item == null) {
       if (this._id == null) {

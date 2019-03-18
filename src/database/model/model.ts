@@ -11,22 +11,22 @@ export class Model<T extends Model<T>> {
   public meta: IObjectMetadata;
 
   @Exclude({ toPlainOnly: true })
-  private db: Datastore<any>;
+  private store: Datastore<any>;
 
-  constructor(data?: { id?: string, db?: Datastore<T> }) {
+  constructor(data?: { id?: string, store?: Datastore<T> }) {
     if (data != null) {
       this.meta = { id: data.id }
-      this.db = data.db
+      this.store = data.store
     }
     else {
       this.meta = null
-      this.db = null
+      this.store = null
     }
   }
 
-  public setData(data: { id: string, db: Datastore<T> }) {
+  public setData(data: { id: string, store: Datastore<T> }) {
     this.meta = { id: data.id }
-    this.db = data.db
+    this.store = data.store
   }
 
   public setCreatedTime(time: number) {
@@ -39,7 +39,15 @@ export class Model<T extends Model<T>> {
     this.meta.updated = time
   }
 
-  public setDb(db: Datastore<T>) {
-    this.db = db
+  public setDb(store: Datastore<T>) {
+    this.store = store
+  }
+
+  public save() {
+    this.store.edit().item(this).with({}).run()
+  }
+
+  public delete() {
+    this.store.delete().item(this).run()
   }
 }

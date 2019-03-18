@@ -14,6 +14,7 @@ export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
 
   public item(value: T) {
     this._toAdd = value
+    return this
   }
 
   public async run(): Promise<T> {
@@ -37,10 +38,12 @@ export class BatchedPushOperation<T extends Model<T>> implements BaseOperation<T
     const id = generateId()
     this._store.methods.setPushData(id, value)
     this._toAdd.push(value)
+    return this
   }
 
   public items(values: T[]) {
     values.forEach(value => this.item(value))
+    return this
   }
 
   public async run(): Promise<T[]> {

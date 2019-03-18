@@ -8,12 +8,12 @@ import { Model } from "../model/model";
 import * as moment from 'moment'
 
 export class DatastoreOperations<T extends Model<T>> {
-  private db: () => Datastore<T>;
+  private _store: () => Datastore<T>;
   public store: LevelUp<EncodingDown<string, any>>;
   private type: () => any;
 
   constructor(db: () => Datastore<T>, store: LevelUp<EncodingDown<string, any>>, type: () => any) {
-    this.db = db
+    this._store = db
     this.store = store
     this.type = type
   }
@@ -28,7 +28,7 @@ export class DatastoreOperations<T extends Model<T>> {
 
   private convertToClassWithId(id: string, item: object): T {
     const converted = this.convertToClass(item)
-    converted.setData({ id, db: this.db() })
+    converted.setData({ id, store: this._store() })
     return converted
   }
 
@@ -37,7 +37,7 @@ export class DatastoreOperations<T extends Model<T>> {
   }
 
   private setData(item: T, id: string) {
-    item.setData({ id, db: this.db() })
+    item.setData({ id, store: this._store() })
   }
 
   public setPushData(id: string, item: T) {
