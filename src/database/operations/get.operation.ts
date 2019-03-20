@@ -136,12 +136,10 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    */
   public async result(): Promise<T[]> {
     let result = await this.store.methods.get(this._filter)
-    if(this._sort) {
-      result = this._sort.run(result)
-    }
-    if(this._pagination) {
-      result = Utils.paginate(result, this._pagination)
-    }
+
+    result = this.store.methods.sort(result, this._sort)
+    result = this.store.methods.paginate(result, this._pagination)
+    
     return result
   }
 

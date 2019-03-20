@@ -6,6 +6,9 @@ import { classToPlain, plainToClass } from "class-transformer";
 import generateId from 'nanoid'
 import { Model } from "../model/model";
 import * as moment from 'moment'
+import { ValueStream } from "./value.stream";
+import { SortOperator } from "../..";
+import { Utils } from "../../utils";
 
 /**
  * This class contains some lower-level abstractions for the **LevelDB**.
@@ -21,7 +24,7 @@ export class DatastoreOperations<T extends Model<T>> {
 
   /** ***LevelDB** database object. */
   public store: LevelUp<EncodingDown<string, any>>;
-  
+
   /** Type of an object stored. */
   private type: () => any;
 
@@ -62,12 +65,12 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param item Item to convert to a class object and set its parameters.
    * @returns Object with type `T`.
    */
-  private convertToClassWithId(id: string, item: object): T {
+  private convertToClassWithId(item: object): T {
     const converted = this.convertToClass(item)
-    converted.setData({ id, store: this._store() })
+    converted.setDb(this._store())
     return converted
   }
-  
+
   /**
    * Sets general parameters of an object, such as `meta.id` and `store`.
    * @param item Item to set parameters to.
@@ -88,7 +91,7 @@ export class DatastoreOperations<T extends Model<T>> {
     this.setCreatedTime(item)
     this.setUpdatedTime(item)
   }
-  
+
   /**
    * Sets the created time of an item to current time.
    * @param item Item to set parameters to.
@@ -106,58 +109,38 @@ export class DatastoreOperations<T extends Model<T>> {
   }
 
   /**
-   * Created a read stream on LevelDB database. `onData` callback will be **called on each object**,
-   * and if the callback returns **non-null** value, it will add this value to an array and return
-   * it later, when the stream will end.
+   * Created a read stream on LevelDB database. `onData` callback will be **called on each object**, and it contains
+   * plain-object form of the object.
    * 
    * #### Usage
    * 
    * ```ts
-   * const allObjects = await this.createReadStream<T>(data => data.value)
+   * await this.createReadStream<T>(data => values.push(data))
    * ```
-   * @param onData Your own callback. If the callback returns value of type `I` or non-null value,
-   * it will add the returned value to an array.
-   * @typeparam I Type of the values that are added to an array.
+   * @param onData Your own callback. Iterates through all objects in the database.
    */
-  public createReadStream<I>(onData: (data: DatastoreStreamIteratorData) => I | null): Promise<I[]> {
-    return new Promise((resolve, reject) => {
-      try {
-        const result: I[] = [];
-        const stream = this.store.createReadStream()
-        stream.on('data', (data: DatastoreStreamIteratorData) => {
-          const res = onData(data)
-          if (res != null) {
-            result.push(res)
-          }
-        })
-        stream.on('end', () => {
-          resolve(result)
-        })
-      }
-      catch (err) {
-        reject(err)
-      }
-    })
+  public createReadStream(): ValueStream {
+    const stream = this.store.createValueStream()
+    return new ValueStream(stream)
   }
 
   /**
-   * Iterates through all objects with a set filter. Calls `onPass` when a object 
-   * passes through filter.
+   * Iterates through all objects with a set filter. Returns a `ValueStream` instance.
    * 
-   * @param onPass Your own callback. It will be fired with an object that object
-   * successfully passes through filter.
+   * @param filter Your filter object.
    */
-  public async iterateThroughObjectsWithFilter(onPass: (data: DatastoreStreamIteratorData) => void, filter?: FilterOperator<T>): Promise<void> {
-    await this.createReadStream<T>((data) => {
-      const object = data.value
+  public createReadStreamFiltered(filter?: FilterOperator<T>): ValueStream {
+    const stream = this.createReadStream()
+
+    stream.middleware = (data) => {
+      let pass = true
       if (filter != null) {
-        if (!filter.run(object)) {
-          return null
-        }
+        pass = filter.run(data)
       }
-      onPass(data)
-      return null
-    })
+      return pass
+    }
+
+    return stream
   }
 
   /**
@@ -168,10 +151,30 @@ export class DatastoreOperations<T extends Model<T>> {
    */
   public async get(filter?: FilterOperator<T>): Promise<T[]> {
     const results: T[] = [];
-    await this.iterateThroughObjectsWithFilter((data) => {
-      results.push(this.convertToClassWithId(data.key, data.value))
-    }, filter)
+    const stream = this.createReadStreamFiltered(filter)
+    stream.onData = (data) => {
+      results.push(this.convertToClassWithId(data.value))
+    }
+    await stream.untilEnd()
     return results
+  }
+
+  public sort(items: T[], sort?: SortOperator<T>): T[] {
+    if (!sort) {
+      return items
+    }
+    else {
+      return sort.run(items)
+    }
+  }
+
+  public paginate(items: T[], pagination?: PaginationData): T[] {
+    if(!pagination) {
+      return items
+    }
+    else {
+      return Utils.paginate(items, pagination)
+    }
   }
 
   /**
@@ -185,14 +188,11 @@ export class DatastoreOperations<T extends Model<T>> {
    */
   public async count(filter?: FilterOperator<T>, pagination?: PaginationData): Promise<number> {
     let count = 0
-
-    await this.iterateThroughObjectsWithFilter((data) => {
+    const stream = this.createReadStreamFiltered(filter)
+    stream.onData = (data) => {
       count++
-    }, filter)
-
-    if (count > pagination.take) {
-      return pagination.take
     }
+    await stream.untilEnd()
     return count
   }
 
@@ -205,7 +205,7 @@ export class DatastoreOperations<T extends Model<T>> {
    */
   async getOne(id: string): Promise<T> {
     const data = await this.store.get(id)
-    return this.convertToClassWithId(id, data)
+    return this.convertToClassWithId(data)
   }
 
   /**
