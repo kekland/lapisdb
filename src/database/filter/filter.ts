@@ -1,4 +1,5 @@
 import { IFilter } from "./filter.types";
+import { IObjectFields } from "../types/typings";
 
 //! Legacy
 /*export class FilterOperator<T> {
@@ -106,7 +107,7 @@ export class Filter<T, K extends T> implements FilterOperator<T> {
  */
 export class FilterOperator<T> {
   /** The filtering method. */
-  private method: (value: IFilter<T>) => boolean;
+  private method: (value: IObjectFields<T>) => boolean;
   
   /**
    * Runs the filter against `value`, and returns `true` if the value
@@ -115,7 +116,7 @@ export class FilterOperator<T> {
    * @param value An object to run filter against
    * @returns Did the object pass the filter?
    */
-  run(value: T): boolean {
+  run(value: T | IObjectFields<T>): boolean {
     return this.method(value)
   }
 
@@ -124,7 +125,7 @@ export class FilterOperator<T> {
    * @param method The filtering method.
    * @memberof FilterOperator
    */
-  constructor(method: (value: IFilter<T>) => boolean) {
+  constructor(method: (value: IObjectFields<T>) => boolean) {
     this.method = method
   }
 }

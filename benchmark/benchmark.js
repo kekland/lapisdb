@@ -15,16 +15,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sirano_1 = require("sirano");
+const lapisdb_1 = require("lapisdb");
 const moment = __importStar(require("moment"));
 const chalk = __importStar(require("chalk"));
-class SimpleObject extends sirano_1.Model {
+class SimpleObject extends lapisdb_1.Model {
     constructor(name) {
         super();
         this.name = name;
     }
 }
-const store = new sirano_1.Datastore('simpleObject', './directory', () => SimpleObject);
+const store = new lapisdb_1.Datastore('simpleObject', './database', () => SimpleObject);
 function runMeasured(count, func) {
     return __awaiter(this, void 0, void 0, function* () {
         let startTime = moment.now();
@@ -113,7 +113,7 @@ function getSorted(count) {
         yield clearStore();
         yield addElements(count);
         const time = yield runMeasured(count, (count) => __awaiter(this, void 0, void 0, function* () {
-            const items = yield store.get().sort({ name: { sort: sirano_1.SortDirection.Ascending } }).result();
+            const items = yield store.get().sort({ name: { sort: lapisdb_1.SortDirection.Ascending } }).result();
         }));
         return {
             name: 'get-sorted',
@@ -127,7 +127,7 @@ function getFilteredAndSorted(count) {
         yield clearStore();
         yield addElements(count);
         const time = yield runMeasured(count, (count) => __awaiter(this, void 0, void 0, function* () {
-            const items = yield store.get().filter((item) => item.name > '3').sort({ name: { sort: sirano_1.SortDirection.Ascending } }).result();
+            const items = yield store.get().filter((item) => item.name > '3').sort({ name: { sort: lapisdb_1.SortDirection.Ascending } }).result();
         }));
         return {
             name: 'get-filtered-and-sorted',

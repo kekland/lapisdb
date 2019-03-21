@@ -9,6 +9,7 @@ import * as moment from 'moment'
 import { ValueStream } from "./value.stream";
 import { SortOperator } from "../..";
 import { Utils } from "../../utils";
+import { IObjectFields } from "../types/typings";
 
 /**
  * This class contains some lower-level abstractions for the **LevelDB**.
@@ -119,7 +120,7 @@ export class DatastoreOperations<T extends Model<T>> {
    * ```
    * @param onData Your own callback. Iterates through all objects in the database.
    */
-  public createReadStream(): ValueStream {
+  public createReadStream(): ValueStream<T> {
     const stream = this.store.createValueStream()
     return new ValueStream(stream)
   }
@@ -129,7 +130,7 @@ export class DatastoreOperations<T extends Model<T>> {
    * 
    * @param filter Your filter object.
    */
-  public createReadStreamFiltered(filter?: FilterOperator<T>): ValueStream {
+  public createReadStreamFiltered(filter?: FilterOperator<T>): ValueStream<T> {
     const stream = this.createReadStream()
 
     stream.middleware = (data) => {
@@ -153,7 +154,25 @@ export class DatastoreOperations<T extends Model<T>> {
     const results: T[] = [];
     const stream = this.createReadStreamFiltered(filter)
     stream.onData = (data) => {
-      results.push(this.convertToClassWithId(data.value))
+      results.push(this.convertToClassWithId(data))
+    }
+    await stream.untilEnd()
+    return results
+  }
+
+  /**
+   * Gets all items that match the filter. Gets all of the items if no filter is given.
+   * Returned items are not converted to a class object - they are still in a plain
+   * object form. This method is faster than `get()`.
+   * 
+   * @param filter Filter object. Must be `FilterOperator<T>`.
+   * @returns An array of plain objects that match the filter.
+   */
+  public async getWithJustFields(filter?: FilterOperator<T>): Promise<IObjectFields<T>[]> {
+    const results: IObjectFields<T>[] = [];
+    const stream = this.createReadStreamFiltered(filter)
+    stream.onData = (data) => {
+      results.push(data)
     }
     await stream.untilEnd()
     return results

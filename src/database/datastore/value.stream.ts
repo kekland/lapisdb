@@ -1,6 +1,7 @@
 import { DatastoreStreamIteratorData } from "./datastore";
+import { IObjectFields } from "../types/typings";
 
-export class ValueStream {
+export class ValueStream<T> {
   public _stream: NodeJS.ReadableStream;
   private _onData: (data: any) => void;
   private _middleware: (data: any) => boolean;
@@ -9,7 +10,7 @@ export class ValueStream {
   private _internalOnClose: () => void;
   private closed = false
 
-  set onData(value: (data: any) => void) {
+  set onData(value: (data: IObjectFields<T>) => void) {
     this._onData = value
   }
 
@@ -21,29 +22,26 @@ export class ValueStream {
     this._onClose = value
   }
 
-  set middleware(value: (data: any) => boolean) {
+  set middleware(value: (data: IObjectFields<T>) => boolean) {
     this._middleware = value
   }
 
   constructor(stream: NodeJS.ReadableStream) {
     this._stream = stream
-    this._stream.on('data', (data: DatastoreStreamIteratorData) => {
+    this._stream.on('data', (data: IObjectFields<T>) => {
       if (this._onData) {
         let passed = true
-        let value = data.value
         if(this._middleware) {
-          passed = this._middleware(value)
+          passed = this._middleware(data)
         }
         if(passed) {
-          this._onData(value)
+          this._onData(data)
         }
       }
-
-      
     })
 
     this._stream.on('close', () => {
-      closed = true
+      this.closed = true
       if (this._onClose) {
         this._onClose()
       }

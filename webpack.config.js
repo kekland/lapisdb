@@ -2,7 +2,7 @@ var path = require('path');
 var TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/module.ts',
     target: "node",
     devtool: 'source-map',
     mode: 'development',
@@ -30,7 +30,7 @@ module.exports = {
             module: 'commonjs',
             target: 'es6',
             esModuleInterop: true,
-            out: './docs'
+            out: '../docs'
         }, './src')
     ]
 }
