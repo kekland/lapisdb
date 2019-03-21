@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>sirano</title>
+	<title>LapisDB</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">sirano</a>
+					<a href="index.html" class="title">LapisDB</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -56,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> sirano</h1>
+			<h1> LapisDB</h1>
 		</div>
 	</div>
 </header>
@@ -64,23 +62,26 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="-sirano">💥 Sirano</h1>
-				<p><a href="https://github.com/kekland/sirano"><img src="http://githubbadges.com/star.svg?user=kekland&repo=sirano&style=flat" alt="star this repo"></a>
-					<a href="https://github.com/kekland/sirano/fork"><img src="http://githubbadges.com/fork.svg?user=kekland&repo=sirano&style=flat" alt="fork this repo"></a>
-					<a href="https://github.com/kekland/sirano"><img src="https://img.shields.io/github/license/kekland/sirano.svg" alt="License"></a>
-					<a href="https://https://www.npmjs.com/package/sirano"><img src="https://img.shields.io/npm/v/sirano.svg" alt="Version"></a>
-				<a href="https://https://www.npmjs.com/package/sirano"><img src="https://img.shields.io/npm/dt/sirano.svg" alt="Downloads"></a></p>
+				<h1 id="-lapisdb">💥 LapisDB</h1>
+				<p><a href="https://github.com/kekland/lapisdb"><img src="http://githubbadges.com/star.svg?user=kekland&repo=lapisdb&style=flat" alt="star this repo"></a>
+					<a href="https://github.com/kekland/lapisdb/fork"><img src="http://githubbadges.com/fork.svg?user=kekland&repo=lapisdb&style=flat" alt="fork this repo"></a>
+					<a href="https://github.com/kekland/lapisdb"><img src="https://img.shields.io/github/license/kekland/lapisdb.svg" alt="License"></a>
+					<a href="https://https://www.npmjs.com/package/lapisdb"><img src="https://img.shields.io/npm/v/lapisdb.svg" alt="Version"></a>
+				<a href="https://https://www.npmjs.com/package/lapisdb"><img src="https://img.shields.io/npm/dt/lapisdb.svg" alt="Downloads"></a></p>
 				<p>A <strong>TypeScript</strong> embedded database built on top of <a href="https://github.com/level/level">LevelDB</a> - a fast and efficient C++ database.</p>
 				<h2 id="-attention">❗ Attention</h2>
 				<p>I am still working on this project, and many things <strong>might change in future</strong>.</p>
 				<h2 id="-installation">💾 Installation</h2>
-				<p><a href="https://https://www.npmjs.com/package/sirano"><strong>Download via NPM</strong></a></p>
+				<p><a href="https://https://www.npmjs.com/package/lapisdb"><strong>Download via NPM</strong></a></p>
 				<pre><code class="language-bash"><span class="hljs-built_in">cd</span> my-awesome-project
-npm install --save sirano</code></pre>
+npm install --save lapisdb</code></pre>
 				<h2 id="-why-in-the-world-do-i-need-another-database-">❓ Why in the world do I need another database?</h2>
 				<p>During my experience writing <strong>backend services</strong>, I often cannot find a database that is both <strong>fast</strong> and <strong>easy</strong> to use.</p>
-				<p><strong>Sirano</strong> is fully typed and uses <strong>TypeScript</strong> under the hood to make the development process a blast.</p>
+				<p><strong>LapisDB</strong> is fully typed and uses <strong>TypeScript</strong> under the hood to make the development process a blast.</p>
 				<h2 id="-how-do-i-use-it-">🔨 How do I use it?</h2>
+				<h3 id="-documentation">📕 Documentation</h3>
+				<p>You can find the full <strong>TypeDoc documentation</strong> <a href="https://kekland.github.io/lapisdb">here</a>.</p>
+				<h3 id="-table-of-contents">📋 Table of contents</h3>
 				<ol>
 					<li><a href="#creating-models">Creating models</a></li>
 					<li><a href="#creating-datastore">Creating Datastore</a></li>
@@ -91,7 +92,7 @@ npm install --save sirano</code></pre>
 					<li><a href="#additional-features">Additional features</a></li>
 				</ol>
 				<h3 id="creating-models">Creating models</h3>
-				<p><strong>Sirano</strong> uses a concept of Models, that I <del>stole</del> borrowed from various other databases (<strong>MongoDB and mongoose</strong>) and ORMs (<strong>TypeORM</strong>).</p>
+				<p><strong>LapisDB</strong> uses a concept of Models, that I <del>stole</del> borrowed from various other databases (<strong>MongoDB and mongoose</strong>) and ORMs (<strong>TypeORM</strong>).</p>
 				<p>Let&#39;s say we want to create a model called Human, that has a name and an age.</p>
 				<p>To do that, we simply write a class for the object, and extend the class from <strong>Model</strong> class.</p>
 				<pre><code class="language-ts"><span class="hljs-comment">//Do not forget to extend from Model, passing the class itself as its generic.</span>
@@ -107,7 +108,7 @@ npm install --save sirano</code></pre>
 }</code></pre>
 				<p>This model will now inherit few methods and fields from <strong>Model</strong> superclass. This includes the special <strong>meta</strong> field, that contains the <strong>id</strong> and <em>created/last edited</em> <strong>time</strong> as UNIX timestamp.</p>
 				<h3 id="creating-datastore">Creating Datastore</h3>
-				<p><strong>Sirano</strong> uses low-level <strong>LevelDB</strong> database and provides higher-level abstraction for your objects. To start, you have to create a <code>Datastore</code> object.</p>
+				<p><strong>LapisDB</strong> uses low-level <strong>LevelDB</strong> database and provides higher-level abstraction for your objects. To start, you have to create a <code>Datastore</code> object.</p>
 				<p>Now, lets create a <strong>Datastore</strong> for our <strong>Human</strong> model. To do that, you create a new <strong>Datastore</strong> object, passing the <strong>name of database</strong> first, then the <strong>location of it</strong>, and then creating a function that returns the <strong>type of the model</strong>.</p>
 				<pre><code class="language-ts"><span class="hljs-comment">//new Datastore&lt;T&gt;(databaseName, databaseLocation, () =&gt; Type)</span>
 <span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> Datastore&lt;Human&gt;<span class="hljs-function">(<span class="hljs-params">'human', './database', (<span class="hljs-params"></span>) =&gt; Human</span>)</span></code></pre>
@@ -132,7 +133,7 @@ human = <span class="hljs-keyword">await</span> store.push().item(human).run()
 }
 humans = <span class="hljs-keyword">await</span> store.pushBatched().items(humans).run()</code></pre>
 				<h3 id="getting-objects">Getting objects</h3>
-				<p>Now this is the interesting part. To get objects from <strong>Sirano</strong> datastore, you should call <strong>get()</strong> method on the datastore.</p>
+				<p>Now this is the interesting part. To get objects from <strong>LapisDB</strong> datastore, you should call <strong>get()</strong> method on the datastore.</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> operation = store.get()</code></pre>
 				<p>This will return a new <strong>GetOperation</strong> object, that you can modify by calling methods like <strong>skip()</strong>, <strong>take()</strong>, <strong>filter()</strong>, etc. To get the results, you can call method <strong>result()</strong> or <strong>run()</strong>.</p>
 				<h4 id="getting-all-objects">Getting all objects</h4>
@@ -155,7 +156,7 @@ humans = <span class="hljs-keyword">await</span> store.pushBatched().items(human
                                  .result()
 </code></pre>
 				<h4 id="filtering">Filtering</h4>
-				<p><strong>Sirano&#39;s</strong> filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so <strong>IntelliSense</strong> in, for example, <em>Visual Studio Code</em> will show you autocompletion suggestions.</p>
+				<p><strong>LapisDB&#39;s</strong> filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so <strong>IntelliSense</strong> in, for example, <em>Visual Studio Code</em> will show you autocompletion suggestions.</p>
 				<p>To filter, you simply call a .filter() method, where you pass a function to call on each object.</p>
 				<pre><code class="language-ts"><span class="hljs-comment">// Get all humans with age over 18</span>
 <span class="hljs-keyword">const</span> data: Human[] = <span class="hljs-keyword">await</span> store.get()
@@ -210,7 +211,7 @@ humans = <span class="hljs-keyword">await</span> store.pushBatched().items(human
   .take(<span class="hljs-number">3</span>)
   .result()</code></pre>
 				<h3 id="editing-objects">Editing objects</h3>
-				<p>In <strong>Sirano</strong>, there are two ways to edit an object.</p>
+				<p>In <strong>LapisDB</strong>, there are two ways to edit an object.</p>
 				<p>The first way is to create new <strong>EditOperation</strong> object, then call required functions.</p>
 				<pre><code class="language-ts"><span class="hljs-comment">// Set the age of an object with id 'my-id' to 19.</span>
 <span class="hljs-keyword">await</span> store.edit().id(<span class="hljs-string">'my-id'</span>).with({age: <span class="hljs-number">19</span>}).run()
@@ -243,7 +244,7 @@ human.age++
 				<p>Of course, if you need to delete large amounts of data, using batched version will be faster.</p>
 				<h3 id="additional-features">Additional features</h3>
 				<p><em>Coming soon</em>: hooks, server, etc.</p>
-				<h2 id="contact-me">Contact me</h2>
+				<h2 id="-contact-me">📧 Contact me</h2>
 				<p><strong>E-Mail</strong>: <a href="mailto:%60kk.erzhan@gmail.com">`kk.erzhan@gmail.com</a>`</p>
 			</div>
 		</div>
@@ -299,6 +300,9 @@ human.age++
 					<li class=" tsd-kind-class">
 						<a href="classes/utils.html" class="tsd-kind-icon">Utils</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/valuestream.html" class="tsd-kind-icon">Value<wbr>Stream</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/datastorestreamiteratordata.html" class="tsd-kind-icon">Datastore<wbr>Stream<wbr>Iterator<wbr>Data</a>
 					</li>
@@ -328,6 +332,15 @@ human.age++
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#isort" class="tsd-kind-icon">ISort</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#teststore" class="tsd-kind-icon">test<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#unique" class="tsd-kind-icon">Unique</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#testcreaterandomplanets" class="tsd-kind-icon">test<wbr>Create<wbr>Random<wbr>Planets</a>
 					</li>
 				</ul>
 			</nav>
