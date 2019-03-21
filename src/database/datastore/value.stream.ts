@@ -38,6 +38,8 @@ export class ValueStream {
           this._onData(value)
         }
       }
+
+      
     })
 
     this._stream.on('close', () => {

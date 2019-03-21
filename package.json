@@ -1,5 +1,5 @@
 {
-  "name": "sirano",
+  "name": "lapisdb",
   "version": "0.1.4",
   "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
@@ -19,14 +19,14 @@
     "file",
     "json"
   ],
-  "homepage": "https://kekland.github.io/sirano",
+  "homepage": "https://kekland.github.io/lapisdb",
   "bugs": {
-    "url": "https://github.com/kekland/sirano/issues",
+    "url": "https://github.com/kekland/lapisdb/issues",
     "email": "kk.erzhan@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kekland/sirano.git"
+    "url": "https://github.com/kekland/lapisdb.git"
   },
   "author": "kekland <kk.erzhan@gmail.com>",
   "license": "MIT",

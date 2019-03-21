@@ -1,10 +1,10 @@
-# 💥 Sirano
+# 💥 LapisDB
 
-[![star this repo](http://githubbadges.com/star.svg?user=kekland&repo=sirano&style=flat)](https://github.com/kekland/sirano)
-[![fork this repo](http://githubbadges.com/fork.svg?user=kekland&repo=sirano&style=flat)](https://github.com/kekland/sirano/fork)
-[![License](https://img.shields.io/github/license/kekland/sirano.svg)](https://github.com/kekland/sirano)
-[![Version](https://img.shields.io/npm/v/sirano.svg)](https://https://www.npmjs.com/package/sirano)
-[![Downloads](https://img.shields.io/npm/dt/sirano.svg)](https://https://www.npmjs.com/package/sirano)
+[![star this repo](http://githubbadges.com/star.svg?user=kekland&repo=lapisdb&style=flat)](https://github.com/kekland/lapisdb)
+[![fork this repo](http://githubbadges.com/fork.svg?user=kekland&repo=lapisdb&style=flat)](https://github.com/kekland/lapisdb/fork)
+[![License](https://img.shields.io/github/license/kekland/lapisdb.svg)](https://github.com/kekland/lapisdb)
+[![Version](https://img.shields.io/npm/v/lapisdb.svg)](https://https://www.npmjs.com/package/lapisdb)
+[![Downloads](https://img.shields.io/npm/dt/lapisdb.svg)](https://https://www.npmjs.com/package/lapisdb)
 
 A **TypeScript** embedded database built on top of [LevelDB](https://github.com/level/level) - a fast and efficient C++ database.
 
@@ -14,24 +14,24 @@ I am still working on this project, and many things **might change in future**.
 
 ## 💾 Installation
 
-[**Download via NPM**](https://https://www.npmjs.com/package/sirano)
+[**Download via NPM**](https://https://www.npmjs.com/package/lapisdb)
 
 ```bash
 cd my-awesome-project
-npm install --save sirano
+npm install --save lapisdb
 ```
 
 ## ❓ Why in the world do I need another database?
 
 During my experience writing **backend services**, I often cannot find a database that is both **fast** and **easy** to use.
 
-**Sirano** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
+**LapisDB** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
 
 ## 🔨 How do I use it?
 
 ### 📕 Documentation
 
-You can find the full **TypeDoc documentation** [here](https://kekland.github.io/sirano).
+You can find the full **TypeDoc documentation** [here](https://kekland.github.io/lapisdb).
 
 ### 📋 Table of contents
 
@@ -45,7 +45,7 @@ You can find the full **TypeDoc documentation** [here](https://kekland.github.io
 
 ### Creating models
 
-**Sirano** uses a concept of Models, that I ~~stole~~ borrowed from various other databases (**MongoDB and mongoose**) and ORMs (**TypeORM**).
+**LapisDB** uses a concept of Models, that I ~~stole~~ borrowed from various other databases (**MongoDB and mongoose**) and ORMs (**TypeORM**).
 
 Let's say we want to create a model called Human, that has a name and an age.
 
@@ -69,7 +69,7 @@ This model will now inherit few methods and fields from **Model** superclass. Th
 
 ### Creating Datastore
 
-**Sirano** uses low-level **LevelDB** database and provides higher-level abstraction for your objects. To start, you have to create a `Datastore` object.
+**LapisDB** uses low-level **LevelDB** database and provides higher-level abstraction for your objects. To start, you have to create a `Datastore` object.
 
 Now, lets create a **Datastore** for our **Human** model. To do that, you create a new **Datastore** object, passing the **name of database** first, then the **location of it**, and then creating a function that returns the **type of the model**.
 
@@ -113,7 +113,7 @@ humans = await store.pushBatched().items(humans).run()
 
 ### Getting objects
 
-Now this is the interesting part. To get objects from **Sirano** datastore, you should call **get()** method on the datastore.
+Now this is the interesting part. To get objects from **LapisDB** datastore, you should call **get()** method on the datastore.
 
 ```ts
 const operation = store.get()
@@ -153,7 +153,7 @@ const data: Human[] = await store.get()
 
 #### Filtering
 
-**Sirano's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
+**LapisDB's** filtering is very easy to write, unlike other databases or ORMs. Also, all of it is typed, so **IntelliSense** in, for example, *Visual Studio Code* will show you autocompletion suggestions.
 
 To filter, you simply call a .filter() method, where you pass a function to call on each object.
 
@@ -225,7 +225,7 @@ const data: Human[] = await store.get()
 
 ### Editing objects
 
-In **Sirano**, there are two ways to edit an object.
+In **LapisDB**, there are two ways to edit an object.
 
 The first way is to create new **EditOperation** object, then call required functions.
 

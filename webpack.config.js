@@ -24,7 +24,7 @@ module.exports = {
     },
     plugins: [
         new TypedocWebpackPlugin({
-            name: 'Sirano',
+            name: 'LapisDB',
             mode: 'file',
             includeDeclarations: false,
             module: 'commonjs',

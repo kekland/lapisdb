@@ -1,4 +1,4 @@
-import { Model, Datastore, SortDirection } from 'sirano'
+import { Model, Datastore, SortDirection } from 'lapisdb'
 import * as moment from 'moment'
 import * as chalk from 'chalk'
 
