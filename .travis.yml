@@ -14,4 +14,4 @@ install:
 - npm install
 script:
 - npm test
-os: windows
+os: linux
