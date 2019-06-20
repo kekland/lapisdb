@@ -71,15 +71,15 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
   /**
    * Runs the editing operation.
    */
-  public async run() {
-    await this.edit()
+  public async run(): Promise<T> {
+    return this.edit()
   }
   
   /**
    * Runs the editing operation.
    * Same as [[run]]
    */
-  public async edit() {
+  public async edit(): Promise<T> {
     if (this._item == null) {
       if (this._id == null) {
         throw new Error('Invalid parameters for EditOperation.')
@@ -97,6 +97,7 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
       }
     }
 
-    this._store.methods.put(this._item.meta.id, this._item)
+    await this._store.methods.put(this._item.meta.id, this._item)
+    return this._item
   }
 }
