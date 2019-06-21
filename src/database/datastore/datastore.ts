@@ -52,7 +52,7 @@ export interface PaginationData {
 */
 export class Datastore<T extends Model<T>> {
   /** Name of the database. */
-  private name: string;
+  public name: string;
   /** The **LevelDB** storage. */
   private store: LevelUp<EncodingDown<string, any>>;
   /** A function that returns the type of the model. */
