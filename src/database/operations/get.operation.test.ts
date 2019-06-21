@@ -41,6 +41,12 @@ describe('GET operation', () => {
         .result()
       expect(received).toEqual(data)
     })
+    it('item by its id', async () => {
+      const data: Planet[] = await testCreateRandomPlanets(true)
+      const firstPlanet = data[0]
+      const received = await testStore.get().id(firstPlanet.meta.id).first()
+      expect(received).toEqual(firstPlanet)
+    })
   })
 })
 

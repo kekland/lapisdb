@@ -61,6 +61,25 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
     return this
   }
 
+  /**
+   * Get item by its ID.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * const item = await store.get().id('abcdef').first()
+   * console.log(item)
+   * ```
+   * 
+   * @param id ID of an object.
+   * @returns Returns this operation again, to make chaining methods possible.
+   */
+  public id(id: string): GetOperation<T> {
+    this._filter = new FilterOperator((v) => (v as any).meta.id === id)
+    return this
+  }
+
   /** Same as [[sort]] */
   public orderBy(data: ISort<T>): GetOperation<T> {
     return this.sort(data)
