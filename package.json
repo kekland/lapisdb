@@ -4,7 +4,7 @@
   "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "jest -i --verbose",
+    "test": "rimraf database && mkdir database && jest -i --verbose",
     "watch:build": "rimraf dist && webpack --watch",
     "watch:server": "nodemon \"./dist/bundle.js\" --watch \"./dist\"",
     "dev": "npm run watch:build",
