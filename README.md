@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/github/license/kekland/lapisdb.svg)](https://github.com/kekland/lapisdb)
 [![Version](https://img.shields.io/npm/v/lapisdb.svg)](https://www.npmjs.com/package/lapisdb)
 [![Downloads](https://img.shields.io/npm/dt/lapisdb.svg)](https://www.npmjs.com/package/lapisdb)
+[![Status](https://travis-ci.org/kekland/lapisdb.svg?branch=master)](https://travis-ci.org/kekland/lapisdb)
 
 A **TypeScript** embedded database built on top of [LevelDB](https://github.com/level/level) - a fast and efficient C++ database.
 
