@@ -11,6 +11,7 @@ import { PushOperation, BatchedPushOperation } from '../operations/push.operatio
 import { Model } from '../model/model';
 import { EditOperation } from '../operations/edit.operation';
 import { DeleteOperation, BatchedDeleteOperation } from '../operations/delete.operation';
+import { IEdit } from '../types/edit.types';
 
 /**
  * See [[createReadStream]] for more info.
@@ -107,6 +108,23 @@ export class Datastore<T extends Model<T>> {
     return new PushOperation(this)
   }
 
+  /** This shorthand method is used to push a new object to the database.
+   *  It is similar to the [[push]] method.
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * const human = await store.pushItem(new Human(...))
+   * console.log(human)
+   * ```
+   * @param item An item to push.
+   * @returns An instance of `Promise<T>`, with `meta` field set.
+   * */
+  public async pushItem(item: T): Promise<T> {
+    const result = await this.push().item(item).run()
+    return result
+  }
+
   /** This method is used to push a bunch of objects to the database.
    * 
    * #### Usage
@@ -157,6 +175,31 @@ export class Datastore<T extends Model<T>> {
     return new EditOperation(this)
   }
 
+  /** This shorthand method is used to edit an item in the database.
+   *  It is similar to the [[edit]] method.
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * const human = await store.pushItem(new Human(...))
+   * const editedHuman = await store.editItem(human, {...})
+   * console.log(human, editedHuman)
+   * ```
+   * @param item Either an ID of an object or the object itself.
+   * @param edit Data to edit.
+   * @returns An instance of `Promise<T>`, with `meta` field set.
+   * */
+  public async editItem(item: string | T, edit: IEdit<T>): Promise<T> {
+    let result: T;
+    if(typeof item === 'string') {
+      result = await this.edit().id(item).with(edit).run()
+    }
+    else {
+      result = await this.edit().item(item).with(edit).run()
+    }
+    return result
+  }
+
   /** This method deletes one single object from database.
    * 
    * #### Usage
@@ -172,6 +215,27 @@ export class Datastore<T extends Model<T>> {
    * */
   public delete(): DeleteOperation<T> {
     return new DeleteOperation(this)
+  }
+
+  /** This shorthand method is used to delete an item in the database.
+   *  It is similar to the [[delete]] method.
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * const human = await store.pushItem(new Human(...))
+   * console.log(human)
+   * ```
+   * @param item Either an ID of an object or the object itself.
+   * @returns An instance of `Promise<T>`, with `meta` field set.
+   * */
+  public async deleteItem(item: string | T) {
+    if(typeof item === 'string') {
+      await this.delete().id(item).run()
+    }
+    else {
+      await this.delete().item(item).run()
+    }
   }
 
   /** This method deletes a batch of objects from database.
