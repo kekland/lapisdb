@@ -11,6 +11,13 @@ describe('PUSH operation', () => {
       const count = await testStore.get().count()
       expect(count).toEqual(1)
     })
+    it('single element via shorthand method', async () => {
+      const planet = new Planet('planet', 0)
+      await testStore.pushItem(planet)
+
+      const count = await testStore.get().count()
+      expect(count).toEqual(1)
+    })
     it('five elements', async () => {
       for (let i = 0; i < 5; i++) {
         const planet = new Planet('planet', i)

@@ -25,6 +25,27 @@ describe('DELETE operation', () => {
       })
     })
 
+    describe('single object through shorthand method', () => {
+      it('via item', async () => {
+        const item = new Planet('pluto', 0)
+  
+        await testStore.push().item(item).run()
+        await testStore.deleteItem(item)
+  
+        const count = await testStore.get().count()
+        expect(count).toBe(0)
+      })
+      it('via id', async () => {
+        const item = new Planet('pluto', 0)
+  
+        await testStore.push().item(item).run()
+        await testStore.deleteItem(item.meta.id)
+  
+        const count = await testStore.get().count()
+        expect(count).toBe(0)
+      })
+    })
+
     describe('batched', () => {
       describe('single object', () => {
         it.todo('via item')
