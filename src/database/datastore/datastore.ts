@@ -189,4 +189,46 @@ export class Datastore<T extends Model<T>> {
   public deleteBatched(): BatchedDeleteOperation<T> {
     return new BatchedDeleteOperation(this)
   }
+
+  /** This method assigns a function to onPush event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onPush((data) => console.log(data))
+   * ```
+   * @param func Callback method.
+   * */
+  public onPush(func: (data: T) => any): void {
+    this.methods.onPush(func)
+  }
+
+  /** This method assigns a function to onEdit event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onEdit((id, data) => console.log(id, data))
+   * ```
+   * @param func Callback method.
+   * */
+  public onEdit(func: (id: string, data: T) => any): void {
+    this.methods.onEdit(func)
+  }
+
+  /** This method assigns a function to onDelete event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onDelete((id) => console.log(id))
+   * ```
+   * @param func Callback method.
+   * */
+  public onDelete(func: (id: string) => any): void {
+    this.methods.onDelete(func)
+  }
 }

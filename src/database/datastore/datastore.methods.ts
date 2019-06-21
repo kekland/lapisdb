@@ -29,6 +29,14 @@ export class DatastoreOperations<T extends Model<T>> {
   /** Type of an object stored. */
   private type: () => any;
 
+  /** `onDataPushed` is an event that is called when new data is pushed into the database. */
+  private onDataPushed: (data: T) => any;
+
+  /** `onDataEdited` is an event that is called when data is edited in the database. */
+  private onDataEdited: (id: string, data: T) => any;
+
+  /** `onDataDeleted` is an event that is called when data is deleted in the database. */
+  private onDataDeleted: (id: string) => any;
 
   /**
    * Creates an instance of DatastoreOperations.
@@ -240,6 +248,11 @@ export class DatastoreOperations<T extends Model<T>> {
 
     const plain = this.convertToPlain(item)
     await this.store.put(id, plain)
+    
+    if(this.onDataPushed != null) {
+      this.onDataPushed(item)
+    }
+
     return item
   }
 
@@ -254,6 +267,11 @@ export class DatastoreOperations<T extends Model<T>> {
     this.setUpdatedTime(item)
 
     await this.store.put(id, this.convertToPlain(item))
+    
+    if(this.onDataEdited != null) {
+      this.onDataEdited(id, item)
+    }
+
     return item
   }
 
@@ -264,5 +282,50 @@ export class DatastoreOperations<T extends Model<T>> {
    */
   async delete(id: string): Promise<void> {
     await this.store.del(id)
+    if(this.onDataDeleted != null) {
+      this.onDataDeleted(id)
+    }
+  }
+  
+  /** This method assigns a function to onPush event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onPush((data) => console.log(data))
+   * ```
+   * @param func Callback method.
+   * */
+  public onPush(func: (data: T) => any): void {
+    this.onDataPushed = func
+  }
+
+  /** This method assigns a function to onEdit event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onEdit((id, data) => console.log(id, data))
+   * ```
+   * @param func Callback method.
+   * */
+  public onEdit(func: (id: string, data: T) => any): void {
+    this.onDataEdited = func
+  }
+
+  /** This method assigns a function to onDelete event.
+   * 
+   * #### Usage
+   * 
+   * ```ts
+   * const store = new Datastore<Human>(...)
+   * store.onDelete((id) => console.log(id))
+   * ```
+   * @param func Callback method.
+   * */
+  public onDelete(func: (id: string) => any): void {
+    this.onDataDeleted = func
   }
 }
