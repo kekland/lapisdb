@@ -3,6 +3,7 @@ import EncodingDown from "encoding-down";
 import { FilterOperator } from "../filter/filter";
 import { PaginationData, DatastoreStreamIteratorData, Datastore } from "./datastore";
 import { classToPlain, plainToClass } from "class-transformer";
+import { validate } from 'class-validator';
 import generateId from 'nanoid'
 import { Model } from "../model/model";
 import * as moment from 'moment'
@@ -38,15 +39,20 @@ export class DatastoreOperations<T extends Model<T>> {
   /** `onDataDeleted` is an event that is called when data is deleted in the database. */
   private onDataDeleted: (id: string) => any;
 
+  /** Is this datastore validated using `class-validator`? */
+  private isValidated: boolean;
+
   /**
    * Creates an instance of DatastoreOperations.
    * @param db Function that returns the Datastore object.
    * @param store An instance of LevelDB database.
    * @param type Function that returns the type of a model.
+   * @param isValidated Is this datastore validated using `class-validator`?
    */
-  constructor(db: () => Datastore<T>, store: LevelUp<EncodingDown<string, any>>, type: () => any) {
+  constructor(db: () => Datastore<T>, store: LevelUp<EncodingDown<string, any>>, type: () => any, isValidated: boolean = false) {
     this._store = db
     this.store = store
+    this.isValidated = isValidated
     this.type = type
   }
 
@@ -196,7 +202,7 @@ export class DatastoreOperations<T extends Model<T>> {
   }
 
   public paginate(items: T[], pagination?: PaginationData): T[] {
-    if(!pagination) {
+    if (!pagination) {
       return items
     }
     else {
@@ -247,9 +253,17 @@ export class DatastoreOperations<T extends Model<T>> {
     this.setPushData(id, item)
 
     const plain = this.convertToPlain(item)
-    await this.store.put(id, plain)
     
-    if(this.onDataPushed != null) {
+    if (this.isValidated) {
+      const errors = await validate(item)
+      if(errors.length > 0) {
+        throw errors;
+      }
+    }
+
+    await this.store.put(id, plain)
+
+    if (this.onDataPushed != null) {
       this.onDataPushed(item)
     }
 
@@ -266,9 +280,16 @@ export class DatastoreOperations<T extends Model<T>> {
   async put(id: string, item: T): Promise<T> {
     this.setUpdatedTime(item)
 
+    if (this.isValidated) {
+      const errors = await validate(item)
+      if(errors.length > 0) {
+        throw errors;
+      }
+    }
+
     await this.store.put(id, this.convertToPlain(item))
-    
-    if(this.onDataEdited != null) {
+
+    if (this.onDataEdited != null) {
       this.onDataEdited(id, item)
     }
 
@@ -282,11 +303,11 @@ export class DatastoreOperations<T extends Model<T>> {
    */
   async delete(id: string): Promise<void> {
     await this.store.del(id)
-    if(this.onDataDeleted != null) {
+    if (this.onDataDeleted != null) {
       this.onDataDeleted(id)
     }
   }
-  
+
   /** This method assigns a function to onPush event.
    * 
    * #### Usage

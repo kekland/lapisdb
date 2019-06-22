@@ -66,13 +66,14 @@ export class Datastore<T extends Model<T>> {
    * @param name The name of the database. Usually the name of the type in *lower case*.
    * @param directory The directory where the database will be created.
    * @param type A function that returns the type. For example `() => Human`
+   * @param isValidated Is this datastore validated using `class-validator`?
    */
-  constructor(name: string, directory: string, type: () => any) {
+  constructor(name: string, directory: string, type: () => any, isValidated: boolean = false) {
     this.name = name
     const encoding = encodingDown<string, any>(leveldown(join(directory, name)), { valueEncoding: 'json' })
     this.store = levelup(encoding)
     this.type = type()
-    this.methods = new DatastoreOperations(() => this, this.store, type)
+    this.methods = new DatastoreOperations(() => this, this.store, type, isValidated)
   }
 
   /** This method is used to create a new object with this model. 

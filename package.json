@@ -32,6 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "class-transformer": "^0.2.0",
+    "class-validator": "^0.9.1",
     "encoding-down": "^6.0.1",
     "leveldown": "^4.0.2",
     "levelup": "^4.0.0",
