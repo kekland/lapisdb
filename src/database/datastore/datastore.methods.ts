@@ -81,8 +81,8 @@ export class DatastoreOperations<T extends Model<T>> {
    * @returns Object with type `T`.
    */
   private convertToClassWithId(item: object): T {
-    const converted = this.convertToClass(item)
-    converted.setDb(this._store())
+    const converted = this.convertToClass(item);
+    (converted as any).store = this._store();
     return converted
   }
 
@@ -92,7 +92,13 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param id Identifier of an object.
    */
   private setData(item: T, id: string) {
-    item.setData({ id, store: this._store() })
+    if (item.meta == null) {
+      item.meta = { id }
+    }
+    else {
+      item.meta.id = id
+    }
+    (item as any).store = this._store()
   }
 
   /**
@@ -112,7 +118,8 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param item Item to set parameters to.
    */
   public setCreatedTime(item: T) {
-    item.setCreatedTime(moment.now())
+    if(item.meta == null) return;
+    item.meta.created = moment.now()
   }
 
   /**
@@ -120,7 +127,8 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param item Item to set parameters to.
    */
   public setUpdatedTime(item: T) {
-    item.setUpdatedTime(moment.now())
+    if(item.meta == null) return;
+    item.meta.updated = moment.now()
   }
 
   /**

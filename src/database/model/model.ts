@@ -65,50 +65,6 @@ export class Model<T extends Model<T>> {
   }
 
   /**
-   * Sets the fields that are required by `Datastore`.
-   *
-   * @param data Identifier of an object and the `Datastore` object.
-   */
-  public setData(data: { id: string, store: Datastore<T> }) {
-    if (this.meta == null) {
-      this.meta = { id: data.id }
-    }
-    else {
-      this.meta.id = data.id
-    }
-    this.store = data.store
-  }
-
-  /**
-   * Sets the creation time of an object.
-   *
-   * @param time UNIX timestamp of the time.
-   */
-  public setCreatedTime(time: number) {
-    if (this.meta == null) { return; }
-    this.meta.created = time
-  }
-
-  /**
-   * Sets the last updated time of an object.
-   *
-   * @param time UNIX timestamp of the time.
-   */
-  public setUpdatedTime(time: number) {
-    if (this.meta == null) { return; }
-    this.meta.updated = time
-  }
-
-  /**
-   * Sets the `Datastore` object of this model.
-   *
-   * @param store The `Datastore` object.
-   */
-  public setDb(store: Datastore<T>) {
-    this.store = store
-  }
-
-  /**
    * Saves the object via `Datastore`. You have to make sure that `this.store`
    * is not null. 
    * 
@@ -129,12 +85,7 @@ export class Model<T extends Model<T>> {
    * Deletes the object via `Datastore`. You have to make sure that `this.store`
    * is not null.
    */
-  public delete() {
-    this.store.delete().item(this).run()
-  }
-
-  /** @ignore */
-  public log(func: (any) => void) {
-    func(classToPlain(this))
+  public async delete() {
+    await this.store.delete().item(this).run()
   }
 }

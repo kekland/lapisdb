@@ -89,7 +89,7 @@ export class Datastore<T extends Model<T>> {
    * @returns `T` object with its [[Model.store]] field set.
    * */
   public create(data: T): T {
-    data.setDb(this)
+    (data as any).store = this
     return data
   }
 
