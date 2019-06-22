@@ -1,5 +1,6 @@
 import { Model, Datastore } from ".";
 import { SortDirection } from "./database/sort/sort.types";
+import { IsNotEmpty, IsPositive, Validate, Min } from 'class-validator';
 
 /** @ignore */
 export class Human {
@@ -14,7 +15,10 @@ export class Human {
 
 /** @ignore */
 export class Planet extends Model<Planet> {
+  @IsNotEmpty()
   name: string;
+  
+  @Min(0)
   index: number;
   people: Human[];
 
@@ -37,7 +41,7 @@ export class Planet extends Model<Planet> {
 export let testStore: Datastore<Planet> = null
 
 beforeEach(async () => {
-  testStore = new Datastore<Planet>('test', './database', () => Planet)
+  testStore = new Datastore<Planet>('test', './database', () => Planet, true)
   const items = await testStore.get().result()
   await testStore.deleteBatched().items(items).run()
 })
