@@ -15,7 +15,7 @@ I am still working on this project, and many things **might change in future**.
 
 ## 💾 Installation
 
-[**Download via NPM**](https:/www.npmjs.com/package/lapisdb)
+[**Download via NPM**](https://npmjs.com/package/lapisdb)
 
 ```bash
 cd my-awesome-project
