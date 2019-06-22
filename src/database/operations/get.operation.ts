@@ -163,10 +163,18 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   }
 
   /**
+   * Same as [[first]].
+   */
+  public async one(): Promise<T> {
+    return this.first()
+  }
+
+  /**
    * Returns the first element of the result.
    */
   public async first(): Promise<T> {
-    return (await this.result())[0]
+    const result = await this.result()
+    return (result.length > 0)? result[0] : null
   }
 
   /**
@@ -174,7 +182,7 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    */
   public async last(): Promise<T> {
     const result = await this.result()
-    return (await this.result())[result.length - 1]
+    return (result.length > 0)? result[result.length - 1] : null
   }
 
   /**

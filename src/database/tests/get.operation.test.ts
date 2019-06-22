@@ -47,6 +47,12 @@ describe('GET operation', () => {
       const received = await testStore.get().id(firstPlanet.meta.id).first()
       expect(received).toEqual(firstPlanet)
     })
+    it('item that does not exist', async () => {
+      const data: Planet[] = await testCreateRandomPlanets(true)
+      const firstPlanet = data[0]
+      const received = await testStore.get().id(firstPlanet.meta.id + '1').first()
+      expect(received).toEqual(null)
+    })
   })
 })
 
