@@ -94,4 +94,15 @@ export class Model<T extends Model<T>> {
       throw Error('The model\'s store field is null. Delete the item using datastore\'s methods.')
     }
   }
+
+  public async onGet() {}
+  
+  public async onBeforePush() {}
+  public async onAfterPush() {}
+
+  public async onBeforeEdit() {}
+  public async onAfterEdit() {}
+
+  public async onBeforeDelete() {}
+  public async onAfterDelete() {}
 }
