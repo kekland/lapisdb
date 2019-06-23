@@ -10,16 +10,17 @@ describe('EDIT operation', () => {
       await testStore.push().item(item).run()
       await testStore.edit().item(item).with({name: 'mars'}).run()
 
-      const newItem = await testStore.get().first()
+      const newItem = await testStore.get().one()
+      if(newItem == null) throw Error('newItem is null.')
       expect(newItem.name).toBe('mars')
     })
     it('via id', async () => {
       let item = new Planet('pluto', 0)
-
       item = await testStore.push().item(item).run()
       await testStore.edit().id(item.meta.id).with({name: 'mars'}).run()
 
       const newItem = await testStore.get().first()
+      if(newItem == null) throw Error('newItem is null.')
       expect(newItem.name).toBe('mars')
     })
   })
@@ -31,6 +32,7 @@ describe('EDIT operation', () => {
       await testStore.editItem(item, {name: 'mars'})
 
       const newItem = await testStore.get().first()
+      if(newItem == null) throw Error('newItem is null.')
       expect(newItem.name).toBe('mars')
     })
     it('via id', async () => {
@@ -40,6 +42,7 @@ describe('EDIT operation', () => {
       await testStore.editItem(item.meta.id, {name: 'mars'})
 
       const newItem = await testStore.get().first()
+      if(newItem == null) throw Error('newItem is null.')
       expect(newItem.name).toBe('mars')
     })
   })

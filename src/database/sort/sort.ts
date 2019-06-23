@@ -36,21 +36,21 @@ export class SortOperator<T> {
       let results: Map<number, number[]> = new Map()
 
       for (const sortKey in this.sort) {
-        const sortWith: ISortField<T> = this.sort[sortKey]
+        const sortWith: ISortField<T> = (this.sort as any)[sortKey]
 
-        const aField = a[sortKey]
-        const bField = b[sortKey]
+        const aField = (a as any)[sortKey]
+        const bField = (b as any)[sortKey]
 
         let priority = 0;
         let result = 0;
 
-        if(this.isFieldFunction(sortWith.sort)) {
+        if (this.isFieldFunction(sortWith.sort)) {
           result = sortWith.sort(aField, bField)
         }
         else {
           result = (aField > bField ? 1 : (aField < bField) ? -1 : 0) * (sortWith.sort as number)
         }
-        
+
         if (sortWith.priority) {
           priority = sortWith.priority
         }
@@ -74,9 +74,11 @@ export class SortOperator<T> {
 
       for (const priority of prioritiesArray) {
         const resultsArray = results.get(priority)
-        for (const result of resultsArray) {
-          if (result != 0) {
-            return result
+        if (resultsArray != null) {
+          for (const result of resultsArray) {
+            if (result != 0) {
+              return result
+            }
           }
         }
       }

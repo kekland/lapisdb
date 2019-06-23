@@ -38,12 +38,13 @@ export class Planet extends Model<Planet> {
   }
 }
 
-export let testStore: Datastore<Planet> = null
+export let testStore: Datastore<Planet>
 
 beforeEach(async () => {
   testStore = new Datastore<Planet>('test', './database', () => Planet, true)
   const items = await testStore.get().result()
   await testStore.deleteBatched().items(items).run()
+  const aitems = await testStore.get().result()
 })
 
 afterEach(async () => {

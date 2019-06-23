@@ -15,7 +15,7 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
   private _store: Datastore<T>;
 
   /** Identifier of an object to delete. */
-  private _id: string;
+  private _id?: string;
 
   /**
    * @param store The datastore where the deletion operation takes place.
@@ -32,8 +32,13 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
    * @returns Returns this operation again, to make chaining methods possible.
    */
   public item(item: T) {
-    this._id = item.meta.id
-    return this
+    if (item.meta) {
+      this._id = item.meta.id
+      return this
+    }
+    else {
+      throw Error('Object\'s meta field is null')
+    }
   }
 
   /**
@@ -93,8 +98,13 @@ export class BatchedDeleteOperation<T extends Model<T>> implements BaseOperation
    * @returns Returns this operation again, to make chaining methods possible.
    */
   public item(item: T) {
-    this.id(item.meta.id)
-    return this
+    if (item.meta) {
+      this.id(item.meta.id)
+      return this
+    }
+    else {
+      throw Error('Object\'s meta field is null')
+    }
   }
 
   /**
@@ -116,7 +126,7 @@ export class BatchedDeleteOperation<T extends Model<T>> implements BaseOperation
     this._identifiers.push(id)
     return this
   }
-  
+
   /**
    * Add an array of identifiers to the deletion list.
    * @param ids Array of identifiers to delete.
@@ -152,7 +162,7 @@ export class BatchedDeleteOperation<T extends Model<T>> implements BaseOperation
    */
   public async delete() {
     const chain = this._store.methods.store.batch()
-    for(const identifier of this._identifiers) {
+    for (const identifier of this._identifiers) {
       chain.del(identifier)
     }
     await chain.write()

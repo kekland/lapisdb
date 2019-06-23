@@ -17,13 +17,13 @@ import { Model } from "../model/model";
  */
 export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   /** Filter data to use. Defaults to null - do not filter. */
-  private _filter: FilterOperator<T> = null;
+  private _filter?: FilterOperator<T>;
 
   /** Pagination data to use. Defaults to `{skip: 0, take: Infinity}`*/
   private _pagination: PaginationData = {skip: 0, take: Infinity};
   
   /** Sorting data to use. Defaults to null - do not sort. */
-  private _sort: SortOperator<T> = null;
+  private _sort?: SortOperator<T>;
   
   /** The datastore where the operation takes place. */
   private store: Datastore<T>
@@ -165,14 +165,14 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   /**
    * Same as [[first]].
    */
-  public async one(): Promise<T> {
+  public async one(): Promise<T | null> {
     return this.first()
   }
 
   /**
    * Returns the first element of the result.
    */
-  public async first(): Promise<T> {
+  public async first(): Promise<T | null> {
     const result = await this.result()
     return (result.length > 0)? result[0] : null
   }
@@ -180,7 +180,7 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   /**
    * Returns the last element of the result.
    */
-  public async last(): Promise<T> {
+  public async last(): Promise<T | null> {
     const result = await this.result()
     return (result.length > 0)? result[result.length - 1] : null
   }

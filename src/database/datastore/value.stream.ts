@@ -3,11 +3,11 @@ import { IObjectFields } from "../types/typings";
 
 export class ValueStream<T> {
   public _stream: NodeJS.ReadableStream;
-  private _onData: (data: any) => void;
-  private _middleware: (data: any) => boolean;
-  private _onError: (err: any) => void;
-  private _onClose: () => void;
-  private _internalOnClose: () => void;
+  private _onData?: (data: any) => void;
+  private _middleware?: (data: any) => boolean;
+  private _onError?: (err: any) => void;
+  private _onClose?: () => void;
+  private _internalOnClose?: () => void;
   private closed = false
 
   set onData(value: (data: IObjectFields<T>) => void) {

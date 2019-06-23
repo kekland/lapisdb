@@ -41,11 +41,11 @@ export class Model<T extends Model<T>> {
    * Meta contains the 'metadata' fields of an object. This includes the
    * identifier, creation time and last updated time.
    */
-  public meta: IObjectMetadata;
+  public meta: IObjectMetadata = { id: '_' };
 
   /** `Datastore` object that handles this model. */
   @Exclude({ toPlainOnly: true })
-  private store: Datastore<any>;
+  private store?: Datastore<any>;
 
 
   /**
@@ -53,14 +53,10 @@ export class Model<T extends Model<T>> {
    * @param data Optional data to pass.
    * @memberof Model
    */
-  constructor(data?: { id?: string, store?: Datastore<T> }) {
+  constructor(data?: { id: string, store: Datastore<T> }) {
     if (data != null) {
       this.meta = { id: data.id }
       this.store = data.store
-    }
-    else {
-      this.meta = null
-      this.store = null
     }
   }
 
@@ -73,11 +69,16 @@ export class Model<T extends Model<T>> {
    * it will create a new object in the database and set the `this.meta` field.
    */
   public async save() {
-    if (this.meta && this.meta.id) {
-      await this.store.edit().item(this).with({}).run()
+    if (this.store) {
+      if (this.meta && this.meta.id) {
+        await this.store.edit().item(this).with({}).run()
+      }
+      else {
+        await this.store.push().item(this).run()
+      }
     }
     else {
-      await this.store.push().item(this).run()
+      throw Error('The model\'s store field is null. Use `datastore.create()` to create objects.')
     }
   }
 
@@ -86,6 +87,11 @@ export class Model<T extends Model<T>> {
    * is not null.
    */
   public async delete() {
-    await this.store.delete().item(this).run()
+    if (this.store) {
+      await this.store.delete().item(this).run()
+    }
+    else {
+      throw Error('The model\'s store field is null. Delete the item using datastore\'s methods.')
+    }
   }
 }

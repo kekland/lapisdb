@@ -5,7 +5,7 @@ import { PaginationData, DatastoreStreamIteratorData, Datastore } from "./datast
 import { classToPlain, plainToClass } from "class-transformer";
 import { validate } from 'class-validator';
 import generateId from 'nanoid'
-import { Model } from "../model/model";
+import { Model, IObjectMetadata } from "../model/model";
 import * as moment from 'moment'
 import { ValueStream } from "./value.stream";
 import { SortOperator } from "../..";
@@ -31,13 +31,13 @@ export class DatastoreOperations<T extends Model<T>> {
   private type: () => any;
 
   /** `onDataPushed` is an event that is called when new data is pushed into the database. */
-  private onDataPushed: (data: T) => any;
+  private onDataPushed?: (data: T) => any;
 
   /** `onDataEdited` is an event that is called when data is edited in the database. */
-  private onDataEdited: (id: string, data: T) => any;
+  private onDataEdited?: (id: string, data: T) => any
 
   /** `onDataDeleted` is an event that is called when data is deleted in the database. */
-  private onDataDeleted: (id: string) => any;
+  private onDataDeleted?: (id: string) => any;
 
   /** Is this datastore validated using `class-validator`? */
   private isValidated: boolean;
@@ -92,12 +92,7 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param id Identifier of an object.
    */
   private setData(item: T, id: string) {
-    if (item.meta == null) {
-      item.meta = { id }
-    }
-    else {
-      item.meta.id = id
-    }
+    item.meta = { id } as IObjectMetadata;
     (item as any).store = this._store()
   }
 
@@ -118,7 +113,7 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param item Item to set parameters to.
    */
   public setCreatedTime(item: T) {
-    if(item.meta == null) return;
+    if (item.meta == null) return;
     item.meta.created = moment.now()
   }
 
@@ -127,7 +122,7 @@ export class DatastoreOperations<T extends Model<T>> {
    * @param item Item to set parameters to.
    */
   public setUpdatedTime(item: T) {
-    if(item.meta == null) return;
+    if (item.meta == null) return;
     item.meta.updated = moment.now()
   }
 
@@ -261,10 +256,10 @@ export class DatastoreOperations<T extends Model<T>> {
     this.setPushData(id, item)
 
     const plain = this.convertToPlain(item)
-    
+
     if (this.isValidated) {
       const errors = await validate(item)
-      if(errors.length > 0) {
+      if (errors.length > 0) {
         throw errors;
       }
     }
@@ -290,7 +285,7 @@ export class DatastoreOperations<T extends Model<T>> {
 
     if (this.isValidated) {
       const errors = await validate(item)
-      if(errors.length > 0) {
+      if (errors.length > 0) {
         throw errors;
       }
     }

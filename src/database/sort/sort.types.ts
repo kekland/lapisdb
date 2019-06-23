@@ -3,7 +3,7 @@ type FilterFlags<T> = {
   [Key in keyof T]?: T[Key] extends Function ? never : Key
 }
 
-type AllowedFlags<T> = FilterFlags<T>[keyof T]
+type AllowedFlags<T> = ({[P in keyof T]: T[P] extends Function ? never : P })[keyof T]
 
 /** 
  * Comparator function. Takes two inputs.

@@ -16,13 +16,13 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
   private _store: Datastore<T>;
 
   /** Identifier of an object to edit. Same as `_item.meta.id` */
-  private _id: string;
-  
+  private _id?: string;
+
   /** Object to edit. */
-  private _item: T;
-  
+  private _item?: T;
+
   /** Data fields to set on `_item`. */
-  private _data: IEdit<T>;
+  private _data?: IEdit<T>;
 
   /**
    * @param store The datastore where the operation takes place.
@@ -74,7 +74,7 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
   public async run(): Promise<T> {
     return this.edit()
   }
-  
+
   /**
    * Runs the editing operation.
    * Same as [[run]]
@@ -86,18 +86,24 @@ export class EditOperation<T extends Model<T>> implements BaseOperation<T> {
       }
       this._item = await this._store.methods.getOne(this._id)
     }
-    
-    if(this._data == null) {
+
+    if (this._data == null) {
       throw new Error('Invalid parameters for EditOperation.')
     }
 
-    for(const key in this._data) {
-      if(this._data[key] != null && key != 'meta' && key != 'db') {
-        this._item[key] = this._data[key]
+    for (const key of Object.keys(this._data)) {
+      const value = (this._data as any)[key]
+      if (value != null && key != 'meta' && key != 'db') {
+        (this._item as any)[key] = value
       }
     }
 
-    await this._store.methods.put(this._item.meta.id, this._item)
-    return this._item
+    if (this._item.meta) {
+      await this._store.methods.put(this._item.meta.id, this._item)
+      return this._item
+    }
+    else {
+      throw Error('Object\'s meta field is null')
+    }
   }
 }

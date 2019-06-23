@@ -13,6 +13,7 @@ describe('model should', () => {
     await planet.save()
     
     searchedPlanet = await testStore.get().id(id).one()
+    if(searchedPlanet == null) throw Error('searchedPlanet is null.')
     expect(searchedPlanet.name).toEqual('b')
   })
   it('delete when delete() is called', async () => {

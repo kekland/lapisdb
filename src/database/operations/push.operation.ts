@@ -13,8 +13,8 @@ import { Model } from "../model/model";
  * @typeparam T The model of the Datastore. `T` must extend from `Model`.
  */
 export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
-  /** Object to push. */ 
-  private _toAdd: T;
+  /** Object to push. */
+  private _toAdd?: T;
 
   /** The datastore where the operation takes place. */
   private _store: Datastore<T>
@@ -52,7 +52,12 @@ export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
    * @returns Returns the item with `item.meta` field set.
    */
   public async push(): Promise<T> {
-    return await this._store.methods.push(this._toAdd)
+    if (this._toAdd) {
+      return await this._store.methods.push(this._toAdd)
+    }
+    else {
+      throw Error('Nothing is being pushed.')
+    }
   }
 }
 
@@ -114,8 +119,13 @@ export class BatchedPushOperation<T extends Model<T>> implements BaseOperation<T
    */
   public async push(): Promise<T[]> {
     const chain = this._store.methods.store.batch()
-    for(const value of this._toAdd) {
-      chain.put(value.meta.id, classToPlain(value))
+    for (const value of this._toAdd) {
+      if (value.meta) {
+        chain.put(value.meta.id, classToPlain(value))
+      }
+      else {
+        throw Error('One of the values\'s meta field is null')
+      }
     }
     await chain.write()
     return this._toAdd
