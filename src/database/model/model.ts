@@ -95,12 +95,13 @@ export class Model<T extends Model<T>> {
     }
   }
 
-  public async onBeforePush() {}
+  //TODO: Add tests
+  /*public async onBeforePush() {}
   public async onAfterPush() {}
 
   public async onBeforeEdit() {}
   public async onAfterEdit() {}
 
   public async onBeforeDelete() {}
-  public async onAfterDelete() {}
+  public async onAfterDelete() {}*/
 }

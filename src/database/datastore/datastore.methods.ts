@@ -264,7 +264,7 @@ export class DatastoreOperations<T extends Model<T>> {
       }
     }
 
-    await item.onBeforePush()
+    //await item.onBeforePush()
   
     await this.store.put(id, plain)
   
@@ -272,7 +272,7 @@ export class DatastoreOperations<T extends Model<T>> {
       this.onDataPushed(item)
     }
 
-    await item.onAfterPush()
+    //await item.onAfterPush()
 
     return item
   }
@@ -294,7 +294,7 @@ export class DatastoreOperations<T extends Model<T>> {
       }
     }
 
-    await item.onBeforeEdit()
+    //await item.onBeforeEdit()
 
     await this.store.put(id, this.convertToPlain(item))
 
@@ -302,7 +302,7 @@ export class DatastoreOperations<T extends Model<T>> {
       this.onDataEdited(id, item)
     }
 
-    await item.onAfterEdit()
+    //await item.onAfterEdit()
     return item
   }
 
