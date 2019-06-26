@@ -95,8 +95,6 @@ export class Model<T extends Model<T>> {
     }
   }
 
-  public async onGet() {}
-  
   public async onBeforePush() {}
   public async onAfterPush() {}
 

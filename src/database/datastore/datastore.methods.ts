@@ -264,11 +264,15 @@ export class DatastoreOperations<T extends Model<T>> {
       }
     }
 
+    await item.onBeforePush()
+  
     await this.store.put(id, plain)
-
+  
     if (this.onDataPushed != null) {
       this.onDataPushed(item)
     }
+
+    await item.onAfterPush()
 
     return item
   }
@@ -290,12 +294,15 @@ export class DatastoreOperations<T extends Model<T>> {
       }
     }
 
+    await item.onBeforeEdit()
+
     await this.store.put(id, this.convertToPlain(item))
 
     if (this.onDataEdited != null) {
       this.onDataEdited(id, item)
     }
 
+    await item.onAfterEdit()
     return item
   }
 
