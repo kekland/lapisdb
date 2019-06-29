@@ -11,8 +11,8 @@ import { Model } from './lapisdb/model/model'
 import { IEmptyModelMetadata, IFilledModelMetadata, IModelMetadata } from './lapisdb/model/model.metadata'
 
 import { GetOperation } from './lapisdb/operations/get.operation'
-import { PushOperation } from './lapisdb/operations/push.operation'
-import { DeleteOperation } from './lapisdb/operations/delete.operation'
+import { PushOperation, BatchedPushOperation } from './lapisdb/operations/push.operation'
+import { DeleteOperation, BatchedDeleteOperation } from './lapisdb/operations/delete.operation'
 
 export {
   DatastoreAdapter,
@@ -28,5 +28,7 @@ export {
   IModelMetadata,
   GetOperation,
   PushOperation,
+  BatchedPushOperation,
   DeleteOperation,
+  BatchedDeleteOperation,
 }
