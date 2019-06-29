@@ -13,8 +13,15 @@ export class LevelDbAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
   private type: ClassType<T>;
   private level: LevelUp<EncodingDown<string, any>>;
 
-  convertToClass(item: object): T {
+  private convertToClass(item: object): T {
     return plainToClass(this.type, item)
+  }
+
+  async open(): Promise<void> {
+    await this.level.open()
+  }
+  async close(): Promise<void> {
+    await this.level.close()
   }
 
   async get(id: string): Promise<T | null> {
@@ -48,12 +55,22 @@ export class LevelDbAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     return item
   }
 
-  *stream(): Iterable<ModelIterable<T>> {
+  private readOnce(stream: NodeJS.ReadableStream): Promise<LevelIterator> {
+    return new Promise((resolve, reject) => {
+      stream.resume()
+      stream.once('data', (v) => {
+        stream.pause()
+        resolve(v)
+      })
+    })
+  }
+
+  async *stream(): AsyncIterableIterator<ModelIterable<T>> {
     const stream = this.level.createReadStream()
+    stream.pause()
     while (stream.readable) {
-      const item = stream.read(1)
-      console.log(item)
-      return;
+      const item = await this.readOnce(stream)
+      yield new ModelIterable(item.key, this.convertToClass(item.value))
     }
   }
 

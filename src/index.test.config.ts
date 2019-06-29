@@ -1,5 +1,6 @@
 import { Model, Datastore } from ".";
 import { LevelDbAdapter } from './lapisdb/datastore/adapters/leveldb.adapter';
+import rimraf from 'rimraf'
 
 /** @ignore */
 export class Human {
@@ -34,20 +35,18 @@ export class Planet extends Model<Planet> {
   }
 }
 
-export let testStore: Datastore<Planet> = new Datastore<Planet>('test', new LevelDbAdapter(Planet, {name: 'test', directory: './database'}))
+export let testStore: Datastore<Planet>
+
+beforeAll(async () => {
+  console.log('opening database')
+  testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  await testStore.adapter.open()
+}, 1000)
 
 beforeEach(async () => {
-  const items = await testStore.getItems()
-  for(const item of items) {
-    await item.delete()
-  }
 })
 
 afterEach(async () => {
-  const items = await testStore.getItems()
-  for(const item of items) {
-    await item.delete()
-  }
 })
 
 export const testCreateRandomPlanets = async (push: boolean = false) => {
@@ -57,7 +56,7 @@ export const testCreateRandomPlanets = async (push: boolean = false) => {
   }
 
   if (push) {
-    for(const item of data) {
+    for (const item of data) {
       await item.save()
     }
   }
