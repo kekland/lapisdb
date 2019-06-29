@@ -6,6 +6,7 @@
 [![Version](https://img.shields.io/npm/v/lapisdb.svg)](https://www.npmjs.com/package/lapisdb)
 [![Downloads](https://img.shields.io/npm/dt/lapisdb.svg)](https://www.npmjs.com/package/lapisdb)
 [![Status](https://travis-ci.org/kekland/lapisdb.svg?branch=master)](https://travis-ci.org/kekland/lapisdb)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7203331dd64d47a290ac3e9ce3ef6d95)](https://www.codacy.com/app/kekland/lapisdb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kekland/lapisdb&amp;utm_campaign=Badge_Grade)
 
 A **TypeScript** embedded database that is really easy and nice to use. 
 
