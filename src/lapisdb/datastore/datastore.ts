@@ -4,6 +4,7 @@ import { FilterMethod } from './interfaces/filter.type';
 import { IPaginationData } from './interfaces/pagination.type';
 import { GetOperation, PushOperation, DeleteOperation } from '../..';
 import { BatchedPushOperation } from '../operations/push.operation';
+import { BatchedDeleteOperation } from '../operations/delete.operation';
 
 export class Datastore<T extends Model<T>> {
   public name: string;
@@ -43,11 +44,11 @@ export class Datastore<T extends Model<T>> {
 
   async remove(item: T | string): Promise<T | null> {
     const query = new DeleteOperation(this)
-    if (typeof item === 'string') {
-      return query.id(item).run()
-    }
-    else {
-      return query.item(item).run()
-    }
+    return query.value(item).run()
+  }
+
+  async removeItems(items: T[] | string[]): Promise<T[]> {
+    const query = new BatchedDeleteOperation(this)
+    return query.values(items).run()
   }
 }
