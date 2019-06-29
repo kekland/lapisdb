@@ -5,6 +5,7 @@ import { IPaginationData } from './interfaces/pagination.type';
 import { GetOperation } from '../..';
 import { IEdit } from '../types/edit.types';
 import { IFullfilledModelMetadata } from '../model/model.metadata';
+import { MetadataUtils } from './metadata.utils';
 
 export class Datastore<T extends Model<T>> {
   public name: string;
@@ -33,7 +34,7 @@ export class Datastore<T extends Model<T>> {
   }
 
   async push(item: T): Promise<T> {
-    item.meta = {} as IFullfilledModelMetadata
+    this.adapter.put(item)
   }
 
   async del(item: T | string): Promise<T> {

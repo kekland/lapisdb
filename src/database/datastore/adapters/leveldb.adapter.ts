@@ -27,15 +27,20 @@ export class LevelDBAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     }
   }
 
-  async put(id: string, item: T): Promise<T> {
-    const plain = classToPlain(item)
-    await this.level.put(id, plain)
-    return item
+  async put(item: T): Promise<T> {
+    if (item.hasMetadata()) {
+      const plain = classToPlain(item)
+      await this.level.put(item.meta.id, plain)
+      return item
+    }
+    else {
+      throw Error('Item has no metadata')
+    }
   }
 
   async remove(id: string): Promise<T | null> {
     const item = await this.get(id)
-    if(item == null) {
+    if (item == null) {
       return null
     }
     await this.level.del(id)
