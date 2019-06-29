@@ -1,6 +1,6 @@
 import { Exclude, classToPlain } from 'class-transformer';
 import { Datastore } from '../datastore/datastore';
-import { IModelMetadata, IEmptyModelMetadata, IFullfilledModelMetadata } from './model.metadata';
+import { IModelMetadata, IEmptyModelMetadata, IFilledModelMetadata } from './model.metadata';
 import { MetadataUtils } from '../datastore/metadata.utils';
 
 export class Model<T extends Model<T>> {
@@ -14,7 +14,7 @@ export class Model<T extends Model<T>> {
     this.meta = {} as IEmptyModelMetadata;
   }
 
-  hasMetadata(): this is { meta: IFullfilledModelMetadata } {
+  hasMetadata(): this is { meta: IFilledModelMetadata } {
     return this.meta.id != null && this.meta.created != null && this.meta.updated != null;
   }
 

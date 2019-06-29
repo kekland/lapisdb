@@ -8,7 +8,7 @@ import { LevelIterator, ModelIterable } from './lapisdb/datastore/interfaces/mod
 import { Datastore } from './lapisdb/datastore/datastore'
 
 import { Model } from './lapisdb/model/model'
-import { IEmptyModelMetadata, IFullfilledModelMetadata, IModelMetadata } from './lapisdb/model/model.metadata'
+import { IEmptyModelMetadata, IFilledModelMetadata, IModelMetadata } from './lapisdb/model/model.metadata'
 
 import { GetOperation } from './lapisdb/operations/get.operation'
 import { PushOperation } from './lapisdb/operations/push.operation'
@@ -24,7 +24,7 @@ export {
   Datastore,
   Model,
   IEmptyModelMetadata,
-  IFullfilledModelMetadata,
+  IFilledModelMetadata,
   IModelMetadata,
   GetOperation,
   PushOperation,

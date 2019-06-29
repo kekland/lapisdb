@@ -1,4 +1,4 @@
-import { IFullfilledModelMetadata } from '../model/model.metadata';
+import { IFilledModelMetadata } from '../model/model.metadata';
 import nanoid = require('nanoid');
 
 export class MetadataUtils {
@@ -6,7 +6,7 @@ export class MetadataUtils {
     return Date.now()
   }
 
-  static getNewMetadata(): IFullfilledModelMetadata {
+  static getNewMetadata(): IFilledModelMetadata {
     const timestamp = MetadataUtils.getTimestamp()
     return { id: nanoid(), created: timestamp, updated: timestamp }
   }

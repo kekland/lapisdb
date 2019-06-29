@@ -10,7 +10,7 @@ export interface IEmptyModelMetadata extends IModelMetadata {
   updated?: number;
 }
 
-export interface IFullfilledModelMetadata extends IModelMetadata {
+export interface IFilledModelMetadata extends IModelMetadata {
   id: string;
   created: number;
   updated: number;

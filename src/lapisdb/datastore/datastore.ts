@@ -3,6 +3,7 @@ import { DatastoreAdapter } from './adapters/adapter';
 import { FilterMethod } from './interfaces/filter.type';
 import { IPaginationData } from './interfaces/pagination.type';
 import { GetOperation, PushOperation, DeleteOperation } from '../..';
+import { BatchedPushOperation } from '../operations/push.operation';
 
 export class Datastore<T extends Model<T>> {
   public name: string;
@@ -33,6 +34,11 @@ export class Datastore<T extends Model<T>> {
   async push(item: T): Promise<T> {
     const query = new PushOperation(this)
     return query.item(item).run()
+  }
+
+  async pushItems(items: T[]): Promise<T[]> {
+    const query = new BatchedPushOperation(this)
+    return query.items(items).run()
   }
 
   async remove(item: T | string): Promise<T | null> {
