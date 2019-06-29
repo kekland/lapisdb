@@ -6,10 +6,11 @@ import EncodingDown from 'encoding-down';
 import { join } from 'path';
 import { ModelIterable, LevelIterator } from '../interfaces/model.iterator';
 import { plainToClass, classToPlain } from 'class-transformer';
+import { ClassType } from '../interfaces/class.type';
 
-export class LevelDBAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
+export class LevelDbAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
   private name: string;
-  private type: new () => T;
+  private type: ClassType<T>;
   private level: LevelUp<EncodingDown<string, any>>;
 
   convertToClass(item: object): T {
@@ -56,7 +57,7 @@ export class LevelDBAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     }
   }
 
-  constructor(type: new () => T, options: { name: string, directory: string }) {
+  constructor(type: ClassType<T>, options: { name: string, directory: string }) {
     this.type = type
     this.name = options.name
 

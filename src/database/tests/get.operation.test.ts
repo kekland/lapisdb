@@ -10,13 +10,6 @@ describe('GET operation', () => {
 
       expect(received).toHaveLength(data.length)
     })
-    it('first element by sorting index', async () => {
-      const data: Planet[] = await testCreateRandomPlanets(true)
-      const received = await testStore.get()
-        .sort({index: {sort: SortDirection.Ascending}})
-        .first()
-      expect(received).toEqual(data[0])
-    })
     it('single element by filtering index', async () => {
       const index = 55
       const data: Planet[] = await testCreateRandomPlanets(true)

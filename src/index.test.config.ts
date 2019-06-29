@@ -1,6 +1,5 @@
 import { Model, Datastore } from ".";
-import { SortDirection } from "./database/sort/sort.types";
-import { IsNotEmpty, IsPositive, Validate, Min } from 'class-validator';
+import { LevelDbAdapter } from './database/datastore/adapters/leveldb.adapter';
 
 /** @ignore */
 export class Human {
@@ -15,15 +14,12 @@ export class Human {
 
 /** @ignore */
 export class Planet extends Model<Planet> {
-  @IsNotEmpty()
   name: string;
-  
-  @Min(0)
   index: number;
   people: Human[];
 
   constructor(name: string, index: number) {
-    super()
+    super(testStore)
     this.name = name
     this.index = index
     this.people = []
@@ -38,17 +34,20 @@ export class Planet extends Model<Planet> {
   }
 }
 
-export let testStore: Datastore<Planet>
+export let testStore: Datastore<Planet> = new Datastore<Planet>('test', new LevelDbAdapter(Planet, {name: 'test', directory: './database'}))
 
 beforeEach(async () => {
-  testStore = new Datastore<Planet>('test', './database', () => Planet, true)
-  const items = await testStore.get().result()
-  await testStore.deleteBatched().items(items).run()
-  const aitems = await testStore.get().result()
+  const items = await testStore.getItems()
+  for(const item of items) {
+    await item.delete()
+  }
 })
 
 afterEach(async () => {
-  await testStore.methods.store.close()
+  const items = await testStore.getItems()
+  for(const item of items) {
+    await item.delete()
+  }
 })
 
 export const testCreateRandomPlanets = async (push: boolean = false) => {
@@ -58,7 +57,10 @@ export const testCreateRandomPlanets = async (push: boolean = false) => {
   }
 
   if (push) {
-    await testStore.pushBatched().items(data).run()
+    for(const item of data) {
+      await item.save()
+    }
   }
+  
   return data
 }
