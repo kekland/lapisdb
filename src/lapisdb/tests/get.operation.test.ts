@@ -1,6 +1,6 @@
 import { testCreateRandomPlanets, testStore, Planet } from "../../index.test.config";
 import _ from 'lodash'
-import { GetOperation } from '../..';
+import { GetOperation } from 'lapisdb';
 import { classToPlain } from 'class-transformer';
 
 describe('GET operation', () => {

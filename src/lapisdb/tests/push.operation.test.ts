@@ -1,6 +1,6 @@
 import { testStore, Planet } from "../../index.test.config";
+import { PushOperation } from 'lapisdb';
 import * as _ from 'lodash'
-import { PushOperation } from '../..';
 
 describe('PUSH operation', () => {
   describe('adds', () => {
