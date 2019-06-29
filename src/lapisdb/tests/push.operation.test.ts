@@ -1,4 +1,4 @@
-import { testStore, Planet } from "../../index.test.config";
+import { testStore, Planet } from '../../index.test.config';
 import { PushOperation } from 'lapisdb';
 import * as _ from 'lodash'
 

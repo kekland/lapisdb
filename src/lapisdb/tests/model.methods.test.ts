@@ -1,4 +1,4 @@
-import { testStore, Planet } from "../../index.test.config";
+import { testStore, Planet } from '../../index.test.config';
 import * as _ from 'lodash'
 
 describe('model should', () => {
@@ -6,16 +6,16 @@ describe('model should', () => {
     const planet = await (new Planet('a', 0)).save()
     const id = planet.meta.id
 
-    if(id == null) {
+    if (id == null) {
       throw Error('meta.id is null')
     }
-    
+
     let searchedPlanet = await testStore.get(id)
     planet.name = 'b'
     await planet.save()
-    
+
     searchedPlanet = await testStore.get(id)
-    if(searchedPlanet == null) throw Error('searchedPlanet is null.')
+    if (searchedPlanet == null) { throw Error('searchedPlanet is null.') }
     expect(searchedPlanet.name).toEqual('b')
   })
 
@@ -24,7 +24,7 @@ describe('model should', () => {
     const id = newPlanet.meta.id
     await newPlanet.delete()
 
-    if(id == null) {
+    if (id == null) {
       throw Error('meta.id is null.')
     }
     const searchedPlanet = await testStore.get(id)

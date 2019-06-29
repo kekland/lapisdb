@@ -1,4 +1,4 @@
-import { testCreateRandomPlanets, testStore, Planet } from "../../index.test.config";
+import { testCreateRandomPlanets, testStore, Planet } from '../../index.test.config';
 import _ from 'lodash'
 import { GetOperation } from 'lapisdb';
 import { classToPlain } from 'class-transformer';
@@ -26,7 +26,7 @@ describe('GET operation', () => {
         const index = 55
         const data: Planet[] = await testCreateRandomPlanets(true)
         const received = await new GetOperation(testStore)
-          .filter((planet) => planet.index == index)
+          .filter((planet) => planet.index === index)
           .first()
         expect(classToPlain(received)).toMatchObject(classToPlain(data[index]))
       })
@@ -77,4 +77,3 @@ describe('GET operation', () => {
     })
   })
 })
-

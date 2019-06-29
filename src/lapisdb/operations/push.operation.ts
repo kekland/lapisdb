@@ -1,30 +1,30 @@
-import { BaseOperation } from "./database.operations";
-import { Datastore } from "../datastore/datastore";
+import { BaseOperation } from './database.operations';
+import { Datastore } from '../datastore/datastore';
 import generateId from 'nanoid'
-import { classToPlain } from "class-transformer";
-import { Model } from "../model/model";
+import { classToPlain } from 'class-transformer';
+import { Model } from '../model/model';
 import { MetadataUtils } from '../datastore/metadata.utils';
 
 /**
  * This operation **pushes** an object to the database.
- * 
+ *
  * #### Usage
- * 
+ *
  * See [[Datastore.push]].
  * @typeparam T The model of the Datastore. `T` must extend from `Model`.
  */
 export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
   /** Object to push. */
-  private _toAdd?: T;
+  private toAdd?: T;
 
   /** The datastore where the operation takes place. */
-  private _store: Datastore<T>
+  private store: Datastore<T>
 
   /**
    * @param store The datastore where the deletion operation takes place.
    */
   constructor(store: Datastore<T>) {
-    this._store = store
+    this.store = store
   }
 
   /**
@@ -33,7 +33,7 @@ export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
    * @returns Returns this operation again, to make chaining methods possible.
    */
   public item(value: T): this {
-    this._toAdd = value
+    this.toAdd = value
     return this
   }
 
@@ -42,9 +42,9 @@ export class PushOperation<T extends Model<T>> implements BaseOperation<T>{
    * @returns Returns the item with `item.meta` field set.
    */
   public async run(): Promise<T> {
-    if (this._toAdd) {
-      this._toAdd.meta = MetadataUtils.getNewMetadata()
-      return await this._store.adapter.put(this._toAdd)
+    if (this.toAdd) {
+      this.toAdd.meta = MetadataUtils.getNewMetadata()
+      return await this.store.adapter.put(this.toAdd)
     }
     else {
       throw Error('Nothing is being pushed.')

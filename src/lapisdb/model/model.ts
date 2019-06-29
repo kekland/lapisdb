@@ -3,7 +3,6 @@ import { Datastore } from '../datastore/datastore';
 import { IModelMetadata, IEmptyModelMetadata, IFullfilledModelMetadata } from './model.metadata';
 import { MetadataUtils } from '../datastore/metadata.utils';
 
-
 export class Model<T extends Model<T>> {
   public meta: IModelMetadata;
 

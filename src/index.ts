@@ -14,7 +14,6 @@ import { GetOperation } from './lapisdb/operations/get.operation'
 import { PushOperation } from './lapisdb/operations/push.operation'
 import { DeleteOperation } from './lapisdb/operations/delete.operation'
 
-
 export {
   DatastoreAdapter,
   ClassType,

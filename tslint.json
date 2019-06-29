@@ -28,7 +28,7 @@
       false
     ],
     "max-classes-per-file": {
-      "options": 5,
+      "options": 5
     },
     "no-console": false,
     "arrow-parens": false,

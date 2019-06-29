@@ -1,29 +1,27 @@
-import { Model } from "../model/model";
-import { BaseOperation } from "./database.operations";
-import { Datastore } from "../datastore/datastore";
+import { Model } from '../model/model';
+import { BaseOperation } from './database.operations';
+import { Datastore } from '../datastore/datastore';
 
 /**
  * This operation **deletes** an object from the database.
- * 
  * #### Usage
- * 
  * See [[Datastore.delete]].
  * @typeparam T The model of the Datastore. `T` must extend from `Model`.
  */
 export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
   /** The datastore where the operation takes place. */
-  private _store: Datastore<T>;
+  private store: Datastore<T>;
 
   /** Identifier of an object to delete. */
-  private _id?: string;
+  private identifier?: string;
 
   /**
    * @param store The datastore where the deletion operation takes place.
    * @param id Identifier of an object to delete.
    */
   constructor(store: Datastore<T>, id?: string) {
-    this._store = store
-    this._id = id
+    this.store = store
+    this.identifier = id
   }
 
   /**
@@ -33,7 +31,7 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
    */
   public item(item: T) {
     if (item.meta) {
-      this._id = item.meta.id
+      this.identifier = item.meta.id
       return this
     }
     else {
@@ -47,7 +45,7 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
    * @returns Returns this operation again, to make chaining methods possible.
    */
   public id(id: string) {
-    this._id = id
+    this.identifier = id
     return this
   }
 
@@ -55,9 +53,9 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
    * Runs the deletion operation.
    */
   public async run(): Promise<T | null> {
-    if (this._id == null) {
+    if (this.identifier == null) {
       throw new Error('Invalid parameters for DeleteOperation.')
     }
-    return await this._store.adapter.remove(this._id)
+    return await this.store.adapter.remove(this.identifier)
   }
 }
