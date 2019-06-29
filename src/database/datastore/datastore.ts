@@ -3,9 +3,6 @@ import { DatastoreAdapter } from './adapters/adapter';
 import { FilterMethod } from './interfaces/filter.type';
 import { IPaginationData } from './interfaces/pagination.type';
 import { GetOperation, PushOperation, DeleteOperation } from '../..';
-import { IEdit } from '../types/edit.types';
-import { IFullfilledModelMetadata } from '../model/model.metadata';
-import { MetadataUtils } from './metadata.utils';
 
 export class Datastore<T extends Model<T>> {
   public name: string;
@@ -38,7 +35,7 @@ export class Datastore<T extends Model<T>> {
     return query.item(item).run()
   }
 
-  async del(item: T | string): Promise<T | null> {
+  async remove(item: T | string): Promise<T | null> {
     const query = new DeleteOperation(this)
     if (typeof item === 'string') {
       return query.id(item).run()

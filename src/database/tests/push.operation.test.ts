@@ -1,51 +1,31 @@
-import { testCreateRandomPlanets, testStore, Planet } from "../../index.test.config";
-import { SortDirection } from "../sort/sort.types";
+import { testStore, Planet } from "../../index.test.config";
 import * as _ from 'lodash'
+import { PushOperation } from '../..';
 
 describe('PUSH operation', () => {
   describe('adds', () => {
-    it('single element', async () => {
+    it('single element through PushOperation', async () => {
       const planet = new Planet('planet', 0)
-      await testStore.push().item(planet).run()
+      new PushOperation(testStore).item(planet).run()
 
-      const count = await testStore.get().count()
-      expect(count).toEqual(1)
+      const count = await testStore.getItems()
+      expect(count.length).toEqual(1)
     })
-    it('single element via shorthand method', async () => {
+    it('single element through Datastore', async () => {
       const planet = new Planet('planet', 0)
-      await testStore.pushItem(planet)
+      await testStore.push(planet)
 
-      const count = await testStore.get().count()
-      expect(count).toEqual(1)
+      const count = await testStore.getItems()
+      expect(count.length).toEqual(1)
     })
     it('five elements', async () => {
       for (let i = 0; i < 5; i++) {
         const planet = new Planet('planet', i)
-        await testStore.push().item(planet).run()
+        await testStore.push(planet)
       }
 
-      const count = await testStore.get().count()
-      expect(count).toEqual(5)
-    })
-    describe('batched', () => {
-      it('single element', async () => {
-        const planet = new Planet('planet', 0)
-        await testStore.pushBatched().item(planet).run()
-  
-        const count = await testStore.get().count()
-        expect(count).toEqual(1)
-      })
-      it('five elements', async () => {
-        const operation = testStore.pushBatched()
-        for (let i = 0; i < 5; i++) {
-          const planet = new Planet('planet', i)
-          operation.item(planet)
-        }
-        await operation.run()
-  
-        const count = await testStore.get().count()
-        expect(count).toEqual(5)
-      })
+      const count = await testStore.getItems()
+      expect(count.length).toEqual(5)
     })
   })
 })

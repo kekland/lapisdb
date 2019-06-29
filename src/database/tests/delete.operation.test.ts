@@ -1,5 +1,4 @@
-import { testCreateRandomPlanets, testStore, Planet } from "../../index.test.config";
-import { SortDirection } from "../sort/sort.types";
+import { testStore, Planet } from "../../index.test.config";
 import * as _ from 'lodash'
 
 describe('DELETE operation', () => {
@@ -8,52 +7,20 @@ describe('DELETE operation', () => {
       it('via item', async () => {
         const item = new Planet('pluto', 0)
   
-        await testStore.push().item(item).run()
-        await testStore.delete().item(item).run()
+        await testStore.push(item)
+        await testStore.remove(item)
   
-        const count = await testStore.get().count()
-        expect(count).toBe(0)
+        const items = await testStore.getItems()
+        expect(items.length).toBe(0)
       })
       it('via id', async () => {
         const item = new Planet('pluto', 0)
   
-        await testStore.push().item(item).run()
-        await testStore.delete().id(item.meta.id).run()
+        await testStore.push(item)
+        await testStore.remove(item.meta.id as any)
   
-        const count = await testStore.get().count()
-        expect(count).toBe(0)
-      })
-    })
-
-    describe('single object through shorthand method', () => {
-      it('via item', async () => {
-        const item = new Planet('pluto', 0)
-  
-        await testStore.push().item(item).run()
-        await testStore.deleteItem(item)
-  
-        const count = await testStore.get().count()
-        expect(count).toBe(0)
-      })
-      it('via id', async () => {
-        const item = new Planet('pluto', 0)
-  
-        await testStore.push().item(item).run()
-        await testStore.deleteItem(item.meta.id)
-  
-        const count = await testStore.get().count()
-        expect(count).toBe(0)
-      })
-    })
-
-    describe('batched', () => {
-      describe('single object', () => {
-        it.todo('via item')
-        it.todo('via id')
-      })
-      describe('multiple object', () => {
-        it.todo('via item')
-        it.todo('via id')
+        const items = await testStore.getItems()
+        expect(items.length).toBe(0)
       })
     })
   })
