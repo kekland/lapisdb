@@ -52,6 +52,9 @@ export class News extends Model<News> {
 // Getting items
 const items: News[] = await db.getItems()
 
+// Filtering results
+const items: News[] = await db.getItems({filter: (n) => n.author === 'kekland'})
+
 // Getting single item
 const item: News = await db.get('identifier')
 
