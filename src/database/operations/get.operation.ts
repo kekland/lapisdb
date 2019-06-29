@@ -1,11 +1,8 @@
 import { BaseOperation } from "./database.operations";
-import { FilterOperator } from "../filter/filter";
-import { PaginationData, Datastore } from "../datastore/datastore";
-import { SortOperator } from "../sort/sort";
-import { Utils } from "../../utils";
-import { ISort } from "../sort/sort.types";
-import { IFilter } from "../filter/filter.types";
+import { Datastore } from "../datastore/datastore";
 import { Model } from "../model/model";
+import { FilterMethod } from '../datastore/interfaces/filter.type';
+import { IPaginationData } from '../datastore/interfaces/pagination.type';
 
 /**
  * This operation **gets** objects from the database.
@@ -16,16 +13,8 @@ import { Model } from "../model/model";
  * @typeparam T The model of the Datastore. `T` must extend from `Model`.
  */
 export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
-  /** Filter data to use. Defaults to null - do not filter. */
-  private _filter?: FilterOperator<T>;
-
-  /** Pagination data to use. Defaults to `{skip: 0, take: Infinity}`*/
-  private _pagination: PaginationData = {skip: 0, take: Infinity};
-  
-  /** Sorting data to use. Defaults to null - do not sort. */
-  private _sort?: SortOperator<T>;
-  
-  /** The datastore where the operation takes place. */
+  private _filter: FilterMethod<T> = (_) => true;
+  private _pagination: IPaginationData = {skip: 0, take: Infinity};
   private store: Datastore<T>
 
   /**
@@ -33,11 +22,6 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    */
   constructor(store: Datastore<T>) {
     this.store = store
-  }
-
-  /** Same as [[filter]]. */
-  public where(method: (value: IFilter<T>) => boolean): GetOperation<T> {
-    return this.filter(method)
   }
 
   /**
@@ -56,8 +40,8 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    * object is said to 'pass' the filter, and is added to the final list.
    * @returns Returns this operation again, to make chaining methods possible.
    */
-  public filter(method: (value: IFilter<T>) => boolean): GetOperation<T> {
-    this._filter = new FilterOperator(method)
+  public filter(method: FilterMethod<T>): this {
+    this._filter = method
     return this
   }
 
@@ -75,68 +59,20 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    * @param id ID of an object.
    * @returns Returns this operation again, to make chaining methods possible.
    */
-  public id(id: string): GetOperation<T> {
-    this._filter = new FilterOperator((v) => (v as any).meta.id === id)
-    return this
-  }
-
-  /** Same as [[sort]] */
-  public orderBy(data: ISort<T>): GetOperation<T> {
-    return this.sort(data)
-  }
-
-  /**
-   * Set the sorting method.
-   * 
-   * #### Usage
-   * 
-   * ```ts
-   * const store = new Datastore<Human>(...)
-   * const items = await store.get().sort({age: {sort: SortDirection.Ascending}}).run()
-   * console.log(items)
-   * ```
-   * 
-   * @param data Sorting method to use. `method` must be a type of `ISort<T>`.
-   * @returns Returns this operation again, to make chaining methods possible.
-   */
-  public sort(data: ISort<T>): GetOperation<T> {
-    this._sort = new SortOperator(data)
+  public id(id: string): this {
+    this._filter = (v) => (v as any).meta.id === id;
     return this
   }
 
   /**
    * Sets the pagination data.
-   * Refer to [[PaginationData]] to understand how pagination works.
+   * Refer to [[IPaginationData]] to understand how pagination works.
    *
    * @param data `skip` and `take` values.
    * @returns Returns this operation again, to make chaining methods possible.
    */
-  public paginate(data: PaginationData): GetOperation<T> {
+  public paginate(data: IPaginationData): this {
     this._pagination = data
-    return this
-  }
-
-  /**
-   * Sets the `skip`.
-   * Refer to [[paginate]] for more information.
-   *
-   * @param skip The value of `skip`.
-   * @returns Returns this operation again, to make chaining methods possible.
-   */
-  public skip(skip: number): GetOperation<T> {
-    this._pagination.skip = skip
-    return this
-  }
-
-  /**
-   * Sets the `take`.
-   * Refer to [[paginate]] for more information.
-   *
-   * @param skip The value of `take`.
-   * @returns Returns this operation again, to make chaining methods possible.
-   */
-  public take(take: number): GetOperation<T> {
-    this._pagination.take = take
     return this
   }
 
@@ -147,21 +83,21 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    * the pagination data).
    */
   public async run(): Promise<T[]> {
-    return await this.result()
+    let result: T[] = [];
+    
+    for await(const item of this.store.adapter.stream()) {
+      const value = item.value
+      const passedFilter = this._filter(value)
+      if(passedFilter) {
+        result.push(value)
+      }
+    }
+    
+    const skip = this._pagination.skip || 0;
+    const take = this._pagination.take || Infinity;
+    return result.slice(skip, skip + take)
   }
   
-  /**
-   * Same as [[run]].
-   */
-  public async result(): Promise<T[]> {
-    let result = await this.store.methods.get(this._filter)
-
-    result = this.store.methods.sort(result, this._sort)
-    result = this.store.methods.paginate(result, this._pagination)
-    
-    return result
-  }
-
   /**
    * Same as [[first]].
    */
@@ -173,7 +109,7 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    * Returns the first element of the result.
    */
   public async first(): Promise<T | null> {
-    const result = await this.result()
+    const result = await this.run()
     return (result.length > 0)? result[0] : null
   }
 
@@ -181,14 +117,7 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
    * Returns the last element of the result.
    */
   public async last(): Promise<T | null> {
-    const result = await this.result()
+    const result = await this.run()
     return (result.length > 0)? result[result.length - 1] : null
-  }
-
-  /**
-   * Returns the number of items in the result.
-   */
-  public async count(): Promise<number> {
-    return await this.store.methods.count(this._filter, this._pagination)
   }
 }

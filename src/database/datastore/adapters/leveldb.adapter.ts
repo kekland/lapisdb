@@ -16,10 +16,15 @@ export class LevelDBAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     return plainToClass(this.type, item)
   }
 
-  async get(id: string): Promise<T> {
-    const item: object = await this.level.get(id)
-    const converted = this.convertToClass(item)
-    return converted
+  async get(id: string): Promise<T | null> {
+    try {
+      const item: object = await this.level.get(id)
+      const converted = this.convertToClass(item)
+      return converted
+    }
+    catch (e) {
+      return null
+    }
   }
 
   async put(id: string, item: T): Promise<T> {
@@ -28,15 +33,18 @@ export class LevelDBAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     return item
   }
 
-  async remove(id: string): Promise<T> {
+  async remove(id: string): Promise<T | null> {
     const item = await this.get(id)
+    if(item == null) {
+      return null
+    }
     await this.level.del(id)
     return item
   }
 
   *stream(): Iterable<ModelIterable<T>> {
     const stream = this.level.createReadStream()
-    while(stream.readable) {
+    while (stream.readable) {
       const item = stream.read(1)
       console.log(item)
       return;

@@ -2,25 +2,41 @@ import { Model } from '../model/model';
 import { DatastoreAdapter } from './adapters/adapter';
 import { FilterMethod } from './interfaces/filter.type';
 import { IPaginationData } from './interfaces/pagination.type';
+import { GetOperation } from '../..';
+import { IEdit } from '../types/edit.types';
+import { IFullfilledModelMetadata } from '../model/model.metadata';
 
 export class Datastore<T extends Model<T>> {
-  name: string;
-  adapter: DatastoreAdapter<T>;
+  public name: string;
+  public adapter: DatastoreAdapter<T>;
 
   constructor(name: string, adapter: DatastoreAdapter<T>) {
     this.name = name;
     this.adapter = adapter;
   }
 
-  async getItem(id: string): Promise<T> {
+  async get(id: string): Promise<T | null> {
     return this.adapter.get(id)
   }
 
   async getItems(options?: { filter?: FilterMethod<T>, pagination?: IPaginationData }): Promise<T[]> {
-    const items: T[] = []
+    const query = new GetOperation(this)
 
-    for await (const item of this.adapter.stream()) {
-
+    if(options && options.filter) {
+      query.filter(options.filter)
     }
+    if(options && options.pagination) {
+      query.paginate(options.pagination)
+    }
+
+    return query.run()
+  }
+
+  async push(item: T): Promise<T> {
+    item.meta = {} as IFullfilledModelMetadata
+  }
+
+  async del(item: T | string): Promise<T> {
+
   }
 }
