@@ -1,4 +1,4 @@
-import { Model } from "../model/model";
+import { Model } from '../model/model';
 
 /**
  * Base class for various datastore operations (Get, Push, etc.)
