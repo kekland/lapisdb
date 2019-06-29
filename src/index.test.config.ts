@@ -1,5 +1,4 @@
 import { Model, Datastore } from ".";
-import { LevelDbAdapter } from './lapisdb/datastore/adapters/leveldb.adapter';
 import rimraf from 'rimraf'
 
 /** @ignore */
@@ -38,7 +37,7 @@ export class Planet extends Model<Planet> {
 export let testStore: Datastore<Planet>
 
 beforeEach(async () => {
-  testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  //testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
   const items = await testStore.getItems()
   for(const item of items) {
     await item.delete()
