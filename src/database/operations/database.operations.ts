@@ -1,5 +1,3 @@
-import { FilterOperator } from "../filter/filter";
-import { Datastore } from "../datastore/datastore";
 import { Model } from "../model/model";
 
 /**

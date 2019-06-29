@@ -54,18 +54,10 @@ export class DeleteOperation<T extends Model<T>> implements BaseOperation<T> {
   /**
    * Runs the deletion operation.
    */
-  public async run() {
-    await this.delete()
-  }
-
-  /**
-   * Runs the deletion operation.
-   * Same as [[run]]
-   */
-  public async delete() {
+  public async run(): Promise<T | null> {
     if (this._id == null) {
       throw new Error('Invalid parameters for DeleteOperation.')
     }
-    await this._store.methods.delete(this._id)
+    return await this._store.adapter.remove(this._id)
   }
 }
