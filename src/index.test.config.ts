@@ -1,5 +1,5 @@
 import { Model, Datastore } from ".";
-import { LevelDbAdapter } from './database/datastore/adapters/leveldb.adapter';
+import { LevelDbAdapter } from './lapisdb/datastore/adapters/leveldb.adapter';
 
 /** @ignore */
 export class Human {
@@ -61,6 +61,6 @@ export const testCreateRandomPlanets = async (push: boolean = false) => {
       await item.save()
     }
   }
-  
+
   return data
 }
