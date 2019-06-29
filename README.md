@@ -28,6 +28,44 @@ npm install --save lapisdb
 
 [**Download via NPM**](https://npmjs.com/package/lapisdb)
 
+
+## Example
+
+You can check out a full REST api [here](https://github.com/kekland/lapisdb-example).
+
+```ts
+const adapter = new LevelDbAdapter(News, { name: 'news', directory: './database' })
+const db = new Datastore('news', adapter)
+
+export class News extends Model<News> {
+  body: string;
+  author: string;
+
+  constructor(body: string, author: string) {
+    super(db)
+
+    this.body = body
+    this.author = author
+  }
+}
+
+// Getting items
+const items: News[] = await db.getItems()
+
+// Getting single item
+const item: News = await db.get('identifier')
+
+// Adding an item
+const newItem: News = await new News('interesting body', 'kekland').save()
+
+// Editing an item
+newItem.body = 'a more interesting body'
+await newItem.save()
+
+// Deleting an item
+await newItem.delete()
+```
+
 ##  How do I use it?
 
 ### 📋 Tutorial

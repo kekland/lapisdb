@@ -39,6 +39,7 @@ export let testStore: Datastore<Planet>
 
 beforeEach(async () => {
   testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  testStore.getItems({pagination: {}})
   const items = await testStore.getItems()
   for (const item of items) {
     await item.delete()
