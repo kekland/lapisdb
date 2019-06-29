@@ -37,16 +37,17 @@ export class Planet extends Model<Planet> {
 
 export let testStore: Datastore<Planet>
 
-beforeAll(async () => {
-  console.log('opening database')
-  testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
-  await testStore.adapter.open()
-}, 1000)
-
 beforeEach(async () => {
+  testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  const items = await testStore.getItems()
+  console.log(`deleting ${items.length} items`)
+  for(const item of items) {
+    await item.delete()
+  }
 })
 
 afterEach(async () => {
+  await testStore.adapter.close()
 })
 
 export const testCreateRandomPlanets = async (push: boolean = false) => {

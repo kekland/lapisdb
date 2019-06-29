@@ -85,14 +85,13 @@ export class GetOperation<T extends Model<T>> implements BaseOperation<T> {
   public async run(): Promise<T[]> {
     let result: T[] = [];
     
-    for await(const item of this.store.adapter.stream()) {
-      const value = item.value
+    await this.store.adapter.stream((value) => {
       const passedFilter = this._filter(value)
       if(passedFilter) {
         result.push(value)
       }
-    }
-    
+    })
+
     const skip = this._pagination.skip || 0;
     const take = this._pagination.take || Infinity;
     return result.slice(skip, skip + take)

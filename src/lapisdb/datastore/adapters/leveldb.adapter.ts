@@ -55,23 +55,16 @@ export class LevelDbAdapter<T extends Model<T>> implements DatastoreAdapter<T> {
     return item
   }
 
-  private readOnce(stream: NodeJS.ReadableStream): Promise<LevelIterator> {
+  stream(callback: (item: T) => void): Promise<void> {
     return new Promise((resolve, reject) => {
-      stream.resume()
-      stream.once('data', (v) => {
-        stream.pause()
-        resolve(v)
+      const stream = this.level.createReadStream()
+      stream.on('end', () => {
+        resolve()
+      })
+      stream.on('data', (item) => {
+        callback(this.convertToClass(item.value))
       })
     })
-  }
-
-  async *stream(): AsyncIterableIterator<ModelIterable<T>> {
-    const stream = this.level.createReadStream()
-    stream.pause()
-    while (stream.readable) {
-      const item = await this.readOnce(stream)
-      yield new ModelIterable(item.key, this.convertToClass(item.value))
-    }
   }
 
   constructor(type: ClassType<T>, options: { name: string, directory: string }) {
