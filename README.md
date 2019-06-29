@@ -7,41 +7,43 @@
 [![Downloads](https://img.shields.io/npm/dt/lapisdb.svg)](https://www.npmjs.com/package/lapisdb)
 [![Status](https://travis-ci.org/kekland/lapisdb.svg?branch=master)](https://travis-ci.org/kekland/lapisdb)
 
-A **TypeScript** embedded database built on top of [LevelDB](https://github.com/level/level) - a fast and efficient C++ database.
+A **TypeScript** embedded database that is really easy and nice to use. 
 
-## ❗ Attention
+## Attention
 
 I am still working on this project, and many things **might change in future**.
 
-## 💾 Installation
+## Why?
 
-[**Download via NPM**](https://npmjs.com/package/lapisdb)
+During my experience writing servers, I often cannot find a database that is both **fast** and **easy** to use.
+
+**LapisDB** tries to solve this problem. It is fully typed and uses **TypeScript** to make the development process a blast.
+
+## Try it out!
 
 ```bash
 cd my-awesome-project
 npm install --save lapisdb
 ```
 
-## ❓ Why in the world do I need another database?
+[**Download via NPM**](https://npmjs.com/package/lapisdb)
 
-During my experience writing **backend services**, I often cannot find a database that is both **fast** and **easy** to use.
-
-**LapisDB** is fully typed and uses **TypeScript** under the hood to make the development process a blast.
-
-## 🔨 How do I use it?
-
-### 📕 Documentation
-
-You can find the full **TypeDoc documentation** [here](https://kekland.github.io/lapisdb).
+##  How do I use it?
 
 ### 📋 Tutorial
 
 Check out the **GitHub Wiki** page [here](https://github.com/kekland/lapisdb/wiki).
 
-### Additional features
+### 📕 Documentation
 
-*Coming soon*: hooks, validation, etc.
+You can find the full **TypeDoc documentation** [here](https://kekland.github.io/lapisdb) (not updated as of v0.3.0).
 
-## 📧 Contact me
+## Plugins, additional features
+
+- [LapisDB observatory](https://github.com/kekland/lapisdb_observatory)
+
+- [LevelDB adapter](https://github.com/kekland/lapisdb-level-adapter)
+
+## Contact me
 
 **E-Mail**: `kk.erzhan@gmail.com`
