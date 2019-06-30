@@ -14,36 +14,21 @@ A **TypeScript** embedded database that is really easy and nice to use.
 
 I am still working on this project, and many things **might change in future**.
 
-## Why?
-
-During my experience writing servers, I often cannot find a database that is both **fast** and **easy** to use.
-
-**LapisDB** tries to solve this problem. It is fully typed and uses **TypeScript** to make the development process a blast.
-
-## Try it out!
-
-```bash
-cd my-awesome-project
-npm install --save lapisdb
-```
-
-[**Download via NPM**](https://npmjs.com/package/lapisdb)
-
-
 ## Example
 
-You can check out a full REST api [here](https://github.com/kekland/lapisdb-example).
+You can check out a full REST API [here](https://github.com/kekland/lapisdb-example).
 
 ```ts
 const adapter = new LevelDbAdapter(News, { name: 'news', directory: './database' })
 const db = new Datastore('news', adapter)
+DatastoreManager.register(db)
 
 export class News extends Model<News> {
   body: string;
   author: string;
 
   constructor(body: string, author: string) {
-    super(db)
+    super(News)
 
     this.body = body
     this.author = author
@@ -69,6 +54,21 @@ await newItem.save()
 // Deleting an item
 await newItem.delete()
 ```
+
+## Why?
+
+During my experience writing servers, I often cannot find a database that is both **fast** and **easy** to use.
+
+**LapisDB** tries to solve this problem. It is fully typed and uses **TypeScript** to make the development process a blast.
+
+## Try it out!
+
+```bash
+cd my-awesome-project
+npm install --save lapisdb
+```
+
+[**Download via NPM**](https://npmjs.com/package/lapisdb)
 
 ##  How do I use it?
 
