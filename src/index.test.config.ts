@@ -1,6 +1,6 @@
 import rimraf from 'rimraf'
 import { LevelDbAdapter } from 'lapisdb-level-adapter'
-import { Datastore, Model } from 'lapisdb';
+import { Datastore, Model } from '.'
 
 /** @ignore */
 export class Human {
@@ -20,7 +20,7 @@ export class Planet extends Model<Planet> {
   people: Human[];
 
   constructor(name: string, index: number) {
-    super(testStore)
+    super(Planet)
     this.name = name
     this.index = index
     this.people = []
@@ -38,7 +38,7 @@ export class Planet extends Model<Planet> {
 export let testStore: Datastore<Planet>
 
 beforeEach(async () => {
-  testStore = new Datastore<Planet>('test', new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  testStore = new Datastore<Planet>('test', Planet, new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
   testStore.getItems({pagination: {}})
   const items = await testStore.getItems()
   for (const item of items) {

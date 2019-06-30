@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+
 import { DatastoreAdapter } from './lapisdb/datastore/adapters/adapter'
 
 import { ClassType } from './lapisdb/datastore/interfaces/class.type'
