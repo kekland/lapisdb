@@ -1,5 +1,4 @@
 import { Model } from '../../model/model';
-import { ModelIterable } from '../interfaces/model.iterator';
 
 export abstract class DatastoreAdapter<T extends Model<T>> {
   abstract async open(): Promise<void>;

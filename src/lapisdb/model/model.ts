@@ -2,13 +2,15 @@ import { Exclude, classToPlain } from 'class-transformer';
 import { Datastore } from '../datastore/datastore';
 import { IModelMetadata, IEmptyModelMetadata, IFilledModelMetadata } from './model.metadata';
 import { MetadataUtils } from '../datastore/metadata.utils';
+import { ClassType } from 'lapisdb';
 
-export class Model<T extends Model<T>> {
+export abstract class Model<T extends Model<T>> {
   public meta: IModelMetadata;
 
   @Exclude({ toPlainOnly: true })
   private store: () => Datastore<any>;
 
+  abstract type: ClassType<T>;
   constructor(store: Datastore<T>) {
     this.store = () => store;
     this.meta = {} as IEmptyModelMetadata;
