@@ -1,6 +1,7 @@
 import rimraf from 'rimraf'
-import { LevelDbAdapter } from 'lapisdb-level-adapter'
+import { LevelDbAdapter } from './lapisdb/tests/leveldb.adapter.test'
 import { Datastore, Model } from '.'
+import { DatastoreManager } from './lapisdb/datastore/datastore.manager';
 
 /** @ignore */
 export class Human {
@@ -39,6 +40,7 @@ export let testStore: Datastore<Planet>
 
 beforeEach(async () => {
   testStore = new Datastore<Planet>('test', Planet, new LevelDbAdapter(Planet, { name: 'test', directory: './database' }))
+  DatastoreManager.register(testStore)
   testStore.getItems({pagination: {}})
   const items = await testStore.getItems()
   for (const item of items) {

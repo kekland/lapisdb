@@ -5,6 +5,9 @@ export class DatastoreManager {
   private static datastores: Map<ClassType<any>, Datastore<any>> = new Map();
 
   public static register(datastore: Datastore<any>) {
+    if (DatastoreManager.datastores == null) {
+      DatastoreManager.datastores = new Map();
+    }
     DatastoreManager.datastores.set(datastore.type, datastore)
   }
 

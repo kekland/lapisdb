@@ -1,12 +1,12 @@
 import { testStore, Planet } from '../../index.test.config';
-import { PushOperation } from 'lapisdb';
+import { PushOperation } from '../../.';
 import * as _ from 'lodash'
 
 describe('PUSH operation', () => {
   describe('adds', () => {
     it('single element through PushOperation', async () => {
       const planet = new Planet('planet', 0)
-      new PushOperation(testStore).item(planet).run()
+      await new PushOperation(testStore).item(planet).run()
 
       const count = await testStore.getItems()
       expect(count.length).toEqual(1)
