@@ -1,6 +1,6 @@
 {
   "name": "lapisdb",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A TypeScript database built on top of LevelDB - a fast and efficient C++ database.",
   "main": "dist/index.js",
   "scripts": {

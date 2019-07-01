@@ -88,6 +88,12 @@ describe('GET operation', () => {
         const received = await testStore.get(firstPlanet.meta.id + '1')
         expect(classToPlain(received)).toEqual(null)
       })
+
+      it('through Datastore using conditionals', async () => {
+        const data: Planet[] = await testCreateRandomPlanets(true)
+        const received = await testStore.get({ index: 123091823 })
+        expect(classToPlain(received)).toEqual(null)
+      })
     })
   })
 })
