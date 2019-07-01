@@ -17,18 +17,32 @@ export class Datastore<T extends Model<T>> {
     this.adapter = adapter;
   }
 
-  async get(id: string): Promise<T | null> {
-    return this.adapter.get(id)
+  async get(condition: string | Partial<T>): Promise<T | null> {
+    if (typeof condition === 'string') {
+      return this.adapter.get(condition)
+    }
+    else {
+      const keys = Object.keys(condition)
+      return new GetOperation(this).filter((item) => {
+        for (const key of keys) {
+          const passesKey = (item as any)[key] === (condition as any)[key]
+          if (!passesKey) {
+            return false
+          }
+        }
+        return true
+      }).one()
+    }
   }
 
-  async getItems(options?: { filter?: FilterMethod<T>, pagination?: IPaginationData }): Promise<T[]> {
+  async getItems(filter?: FilterMethod<T>, pagination?: IPaginationData): Promise<T[]> {
     const query = new GetOperation(this)
 
-    if (options && options.filter) {
-      query.filter(options.filter)
+    if (filter) {
+      query.filter(filter)
     }
-    if (options && options.pagination) {
-      query.paginate(options.pagination)
+    if (pagination) {
+      query.paginate(pagination)
     }
 
     return query.run()

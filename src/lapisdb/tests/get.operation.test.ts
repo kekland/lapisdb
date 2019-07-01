@@ -34,8 +34,22 @@ describe('GET operation', () => {
       it('through Datastore', async () => {
         const index = 55
         const data: Planet[] = await testCreateRandomPlanets(true)
-        const received = await testStore.getItems({ filter: (v) => v.index === index })
+        const received = await testStore.getItems((v) => v.index === index)
         expect(received[0]).toMatchObject(classToPlain(data[index]))
+      })
+
+      it('through Datastore using conditions', async () => {
+        const index = 55
+        const data: Planet[] = await testCreateRandomPlanets(true)
+        const received = await testStore.get({ index: 55 })
+        expect(received).toMatchObject(classToPlain(data[index]))
+      })
+
+      it('through Datastore using conditions with multiple keys', async () => {
+        const index = 55
+        const data: Planet[] = await testCreateRandomPlanets(true)
+        const received = await testStore.get({ index, name: `Planet ${index}` })
+        expect(received).toMatchObject(classToPlain(data[index]))
       })
     })
 
@@ -53,7 +67,7 @@ describe('GET operation', () => {
 
       it('through Datastore', async () => {
         const data: Planet[] = await testCreateRandomPlanets(true)
-        const received = await testStore.getItems({ filter: (planet) => planet.index >= 0 && planet.index < 5 })
+        const received = await testStore.getItems((planet) => planet.index >= 0 && planet.index < 5)
         received.sort((a, b) => a.index - b.index)
         const dataSplit = data.slice(0, 5)
         expect(classToPlain(received)).toMatchObject(classToPlain(dataSplit))
