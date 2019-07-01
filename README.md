@@ -39,10 +39,13 @@ export class News extends Model<News> {
 const items: News[] = await db.getItems()
 
 // Filtering results
-const items: News[] = await db.getItems({filter: (n) => n.author === 'kekland'})
+const items: News[] = await db.getItems((n) => n.author === 'kekland')
 
 // Getting single item
 const item: News = await db.get('identifier')
+
+// Getting single item through its parameters
+const item: News = await db.get({author: 'kekland'})
 
 // Adding an item
 const newItem: News = await new News('interesting body', 'kekland').save()
@@ -51,8 +54,15 @@ const newItem: News = await new News('interesting body', 'kekland').save()
 newItem.body = 'a more interesting body'
 await newItem.save()
 
+// Getting a reference to an item
+const reference: Reference<News> = newItem.getReference()
+
+// Getting an item through its reference
+console.log((await reference.get(News)) === newItem) // true
+
 // Deleting an item
 await newItem.delete()
+
 ```
 
 ## Why?
