@@ -33,6 +33,9 @@ export abstract class Model<T extends Model<T>> {
     if (!this.hasMetadata()) {
       this.meta = MetadataUtils.getNewMetadata()
     }
+    else {
+      this.meta.updated = MetadataUtils.getTimestamp()
+    }
 
     await this.store().adapter.put(this)
     return this
