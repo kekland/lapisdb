@@ -79,20 +79,20 @@ describe('GET operation', () => {
         const data: Planet[] = await testCreateRandomPlanets(true)
         const firstPlanet = data[0]
         const received = await new GetOperation(testStore).id(firstPlanet.meta.id + '1').first()
-        expect(classToPlain(received)).toEqual(null)
+        expect(classToPlain(received)).toBeFalsy()
       })
 
       it('through Datastore', async () => {
         const data: Planet[] = await testCreateRandomPlanets(true)
         const firstPlanet = data[0]
         const received = await testStore.get(firstPlanet.meta.id + '1')
-        expect(classToPlain(received)).toEqual(null)
+        expect(classToPlain(received)).toBeFalsy()
       })
 
       it('through Datastore using conditionals', async () => {
         const data: Planet[] = await testCreateRandomPlanets(true)
         const received = await testStore.get({ index: 123091823 })
-        expect(classToPlain(received)).toEqual(null)
+        expect(classToPlain(received)).toBeFalsy()
       })
     })
   })

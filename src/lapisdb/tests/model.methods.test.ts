@@ -28,6 +28,6 @@ describe('model should', () => {
       throw Error('meta.id is null.')
     }
     const searchedPlanet = await testStore.get(id)
-    expect(searchedPlanet).toEqual(null)
+    expect(searchedPlanet).toBeFalsy()
   })
 })
