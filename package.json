@@ -27,7 +27,7 @@
   "author": "kekland <kk.erzhan@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "class-transformer": "^0.2.0",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.9.1",
     "nanoid": "^2.0.1",
     "reflect-metadata": "^0.1.13"
