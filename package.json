@@ -29,7 +29,7 @@
   "dependencies": {
     "class-transformer": "^0.2.0",
     "class-validator": "^0.9.1",
-    "nanoid": "^2.0.1",
+    "nanoid": "^3.1.31",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
